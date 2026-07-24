@@ -12,16 +12,18 @@ public class NightEventHandler {
 
     @SubscribeEvent
     public void onClientTick(ClientTickEvent.Post e) {
-        NightNeo.eventBus.call(new TickEvent(TickEvent.Phase.POST));
+        NightNeo.eventBus.call(new TickEvent());
     }
 
     @SubscribeEvent
     public void onRenderGui(RenderGuiEvent.Post e) {
-        NightNeo.eventBus.call(new Render2DEvent(e.getGuiGraphics(), e.getPartialTick()));
+        float pt = e.getPartialTick().getGameTimeDeltaTicks();
+        var pose = e.getGuiGraphics().pose();
+        NightNeo.eventBus.call(new Render2DEvent(pose, e.getGuiGraphics(), pt));
     }
 
     @SubscribeEvent
     public void onKeyInput(InputEvent.Key e) {
-        NightNeo.eventBus.call(new KeyEvent(e.getKey(), e.getAction(), e.getModifiers()));
+        NightNeo.eventBus.call(new KeyEvent(e.getKey(), e.getAction() != 0));
     }
 }
