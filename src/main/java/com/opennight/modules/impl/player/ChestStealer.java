@@ -23,7 +23,7 @@ import net.minecraft.world.inventory.FurnaceMenu;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.CrossbowItem;
-import net.minecraft.world.item.DiggerItem;
+// REMOVED DiggerItem
 import net.minecraft.world.item.FishingRodItem;
 import net.minecraft.world.item.Item;
 // REMOVED: import net.minecraft.world.item.ItemNameBlockItem;

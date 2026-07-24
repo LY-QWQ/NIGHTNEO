@@ -449,7 +449,7 @@ public class NoSlow extends Module {
         }
     }
 
-    private boolean isUsable(UseAnim action) {
+    private boolean isUsable(Object action) {
         return action == UseAnim.EAT || action == UseAnim.DRINK || action == UseAnim.SPEAR;
     }
     private boolean isLookingAtInteractableBlock() {

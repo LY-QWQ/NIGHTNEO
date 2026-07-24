@@ -11,7 +11,7 @@ import net.minecraft.network.protocol.game.ServerboundPlayerCommandPacket;
 import net.minecraft.network.protocol.common.ServerboundPongPacket;
 import net.minecraft.network.protocol.game.ServerboundUseItemPacket;
 import net.minecraft.world.item.BowItem;
-import net.minecraft.world.item.BowlFoodItem;
+
 import net.minecraft.world.item.ItemStack;
 import com.opennight.ClientBase;
 import com.opennight.NightNeo;

@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-import net.minecraft.world.entity.projectile.ThrownPotion;
+// REMOVED ThrownPotion
 import com.opennight.modules.impl.render.esp.ClassEspColor;
 
 public class PotionEspColor
