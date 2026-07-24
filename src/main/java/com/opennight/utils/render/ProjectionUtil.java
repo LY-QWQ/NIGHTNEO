@@ -69,7 +69,7 @@ extends ClientBase {
 
     private static void applyBobbing(Player player, Vector3f relativePos, float partialTicks) {
         float walkDist = player.walkAnimation.position();
-        float walkDelta = walkDist - player.walkAnimation.position()O;
+        float walkDelta = player.walkAnimation.speed();
         float walkProgress = -(walkDist + walkDelta * partialTicks);
         float bobAmount = Mth.lerp(partialTicks, player.oBob, player.bob);
         Quaternionf pitchRotation = new Quaternionf().rotationX(Math.abs(Mth.cos(walkProgress * (float)Math.PI - 0.2f) * bobAmount) * 5.0f * ((float)Math.PI / 180));
