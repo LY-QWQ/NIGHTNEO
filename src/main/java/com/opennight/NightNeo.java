@@ -20,7 +20,5 @@ public class NightNeo {
         instance = this;
         LOG.info("OpenNIGHT v1.0-Neo loading on MC 1.21.8");
         new NightEventHandler();
-        registerModules();
     }
-
-        private void registerModules() {}
+}
