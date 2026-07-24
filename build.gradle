@@ -18,8 +18,6 @@ neoForge {
         client {
             client()
             gameDirectory = project.file('run')
-            jvmArgs.add "-javaagent:${tasks.jar.archiveFile.get().asFile.absolutePath}".toString()
-            jvmArgs.add "-Djdk.attach.allowAttachSelf=true".toString()
         }
         server {
             server()
