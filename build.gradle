@@ -18,6 +18,8 @@ neoForge {
         client {
             client()
             gameDirectory = project.file('run')
+            jvmArgs.add "-javaagent:${tasks.jar.archiveFile.get().asFile.absolutePath}".toString()
+            jvmArgs.add "-Djdk.attach.allowAttachSelf=true".toString()
         }
         server {
             server()
@@ -32,7 +34,39 @@ neoForge {
     }
 }
 
+repositories {
+    mavenCentral()
+}
+
 dependencies {
+    // Lombok
     compileOnly 'org.projectlombok:lombok:1.18.36'
     annotationProcessor 'org.projectlombok:lombok:1.18.36'
+
+    // ASM for bytecode manipulation (runtime + build)
+    implementation 'org.ow2.asm:asm:9.7'
+    implementation 'org.ow2.asm:asm-tree:9.7'
+    implementation 'org.ow2.asm:asm-commons:9.7'
+    implementation 'org.ow2.asm:asm-util:9.7'
+
+    // Apache Commons
+    implementation 'org.apache.commons:commons-lang3:3.14.0'
+
+    // GSON for config serialization
+    implementation 'com.google.code.gson:gson:2.10.1'
+}
+
+// JAR manifest for Java agent
+tasks.named('jar', Jar).configure {
+    manifest {
+        attributes([
+            'Specification-Title'     : mod_id,
+            'Implementation-Title'    : project.name,
+            'Implementation-Version'  : project.jar.archiveVersion,
+            'Premain-Class'           : 'com.opennight.asm.Bootstrap',
+            'Agent-Class'             : 'com.opennight.asm.Bootstrap',
+            'Can-Retransform-Classes' : 'true',
+            'Can-Redefine-Classes'    : 'true'
+        ])
+    }
 }

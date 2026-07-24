@@ -13,6 +13,12 @@ public class NightEventHandler {
     @SubscribeEvent
     public void onClientTick(ClientTickEvent.Post e) {
         NightNeo.eventBus.call(new TickEvent());
+        NightNeo.getInstance().onTick();
+    }
+
+    @SubscribeEvent
+    public void onClientStopping(ClientStoppingEvent e) {
+        NightNeo.getInstance().shutdown();
     }
 
     @SubscribeEvent
