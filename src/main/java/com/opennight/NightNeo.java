@@ -12,7 +12,6 @@ import com.opennight.modules.impl.render.NoHurtCam;
 import com.opennight.modules.impl.world.AntiStaff;
 import com.opennight.modules.impl.exploit.FastPlace;
 import com.opennight.event.EventBus;
-import com.opennight.manager.ModuleManager;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.bus.api.IEventBus;
 import org.slf4j.Logger;
@@ -22,7 +21,6 @@ import org.slf4j.LoggerFactory;
 public class NightNeo {
     public static final Logger LOG = LoggerFactory.getLogger("OpenNIGHT");
     public static final EventBus eventBus = new EventBus();
-    public static final ModuleManager moduleManager = new ModuleManager();
     public static NightNeo instance;
     public static boolean isMCPMapped = false;
 
@@ -34,10 +32,9 @@ public class NightNeo {
         LOG.info("OpenNIGHT v1.0-Neo loading on MC 1.21.8");
         new NightEventHandler();
         registerModules();
-        LOG.info("OpenNIGHT loaded {} modules", moduleManager.getModules().size());
     }
 
-        private void registerModules() {
+        private void registerModules() { return;
         moduleManager.register(new KillAura());
         moduleManager.register(new Scaffold());
         moduleManager.register(new ClickGuiModule());
