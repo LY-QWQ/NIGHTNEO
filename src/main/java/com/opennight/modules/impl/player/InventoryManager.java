@@ -479,7 +479,7 @@ extends Module {
         }
         for (int slot = 0; slot < mc.player.getInventory().armor.size(); ++slot) {
             ItemStack armorStack = mc.player.getInventory().armor.get(slot);
-            if (!(armorStack.getItem() instanceof /*REMOVED:ArmorItem*/ Object armorItem)) continue;
+            if (!(armorStack.getItem() instanceof /*REMOVED:item_class*/ Void)) continue;
             if (armorStack.isEmpty()
                     || !actionTimer.hasPassed(this.actionDelaySetting.getValue().intValue())
                     || !(ItemUtil.getBestArmorScore(armorItem.getEquipmentSlot()) > ItemUtil.getArmorScore(armorStack))) {
@@ -492,7 +492,7 @@ extends Module {
         }
         for (int slot = 0; slot < mc.player.getInventory().items.size(); ++slot) {
             ItemStack candidate = mc.player.getInventory().items.get(slot);
-            if (candidate.isEmpty() || !(candidate.getItem() instanceof /*REMOVED:ArmorItem*/ Object armorItem)) continue;
+            if (candidate.isEmpty() || !(candidate.getItem() instanceof /*REMOVED:item_class*/ Void)) continue;
             float candidateScore = ItemUtil.getArmorScore(candidate);
             boolean isBestArmor = ItemUtil.getBestArmorScore(armorItem.getEquipmentSlot()) == candidateScore;
             boolean betterThanEquipped = ItemUtil.getEquippedArmorScore(armorItem.getEquipmentSlot()) < candidateScore;
@@ -681,7 +681,7 @@ extends Module {
             return true;
         }
         Item item = itemStack.getItem();
-        if (item instanceof /*REMOVED:ArmorItem*/ Object armorItem) {
+        if (item instanceof /*REMOVED:item_class*/ Void) {
             float candidateScore = ItemUtil.getArmorScore(itemStack);
             if (ItemUtil.getEquippedArmorScore(armorItem.getEquipmentSlot()) >= candidateScore) {
                 return false;

@@ -84,7 +84,7 @@ extends ClientBase {
         int totalDefense = 0;
         for (ItemStack itemStack : livingEntity.getArmorSlots()) {
             Item item = itemStack.getItem();
-            if (!(item instanceof /*REMOVED:ArmorItem*/ Object armorItem)) continue;
+            if (!(item instanceof /*REMOVED:item_class*/ Void)) continue;
             totalDefense += armorItem.getDefense();
         }
         return totalDefense;

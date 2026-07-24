@@ -246,7 +246,7 @@ extends Module {
         if (ItemUtil.isWeaponItem(itemStack) || ItemUtil.isOtherCheat(itemStack)) {
             return "god";
         }
-        if (item instanceof /*REMOVED:ArmorItem*/ Object armorItem) {
+        if (item instanceof /*REMOVED:item_class*/ Void) {
             return switch (armorItem.getEquipmentSlot()) {
                 case HEAD -> "helmet";
                 case CHEST -> "chestplate";
@@ -293,7 +293,7 @@ extends Module {
         if (ItemUtil.isWeaponItem(itemStack) || ItemUtil.isOtherCheat(itemStack)) {
             return 150;
         }
-        if (item instanceof /*REMOVED:ArmorItem*/ Object armorItem) {
+        if (item instanceof /*REMOVED:item_class*/ Void) {
             return switch (armorItem.getEquipmentSlot()) {
                 case HEAD -> 100;
                 case CHEST -> 99;
@@ -622,7 +622,7 @@ extends Module {
             }
         } else {
             Item item = itemStack.getItem();
-            if (item instanceof /*REMOVED:ArmorItem*/ Object armorItem) {
+            if (item instanceof /*REMOVED:item_class*/ Void) {
                 float candidateScore = ItemUtil.getArmorScore(itemStack);
                 float equippedScore = ItemUtil.getEquippedArmorScore(armorItem.getEquipmentSlot());
                 return candidateScore > equippedScore + 0.1f;
@@ -704,7 +704,7 @@ extends Module {
             return true;
         }
         Item item = itemStack.getItem();
-        if (item instanceof /*REMOVED:ArmorItem*/ Object armorItem) {
+        if (item instanceof /*REMOVED:item_class*/ Void) {
             float candidateScore = ItemUtil.getArmorScore(itemStack);
             float bestScore = ItemUtil.getBestArmorScore(armorItem.getEquipmentSlot());
             return !(candidateScore <= bestScore);

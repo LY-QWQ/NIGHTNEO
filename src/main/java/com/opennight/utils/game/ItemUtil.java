@@ -126,7 +126,7 @@ extends ClientBase {
 
     public static float getBestArmorScore(EquipmentSlot equipmentSlot) {
         return ItemUtil.getAllItems().stream()
-                .filter(stack -> !stack.isEmpty() && stack.getItem() instanceof /*REMOVED:ArmorItem*/ Object armor && armor.getEquipmentSlot() == equipmentSlot)
+                .filter(stack -> !stack.isEmpty() && stack.getItem() instanceof /*REMOVED:item_class*/ Void && armor.getEquipmentSlot() == equipmentSlot)
                 .map(ItemUtil::getArmorScore)
                 .max(Float::compareTo)
                 .orElse(0.0f);
@@ -234,7 +234,7 @@ extends ClientBase {
             return 0.0f;
         }
         Item item = itemStack.getItem();
-        if (item instanceof /*REMOVED:AxeItem*/ Object axeItem) {
+        if (item instanceof /*REMOVED:item_class*/ Void) {
             if (ItemUtil.isLegitAxe(itemStack)) {
                 if (axeItem == Items.WOODEN_AXE) {
                     damage += 4.0f;
@@ -266,7 +266,7 @@ extends ClientBase {
             return 0.0f;
         }
         Item item = itemStack.getItem();
-        if (item instanceof /*REMOVED:SwordItem*/ Object swordItem) {
+        if (item instanceof /*REMOVED:item_class*/ Void) {
             damage += swordItem.getDamage() + 1.0f;
         }
         if ((sharpnessLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SHARPNESS, itemStack)) > 0) {
@@ -282,7 +282,7 @@ extends ClientBase {
             return 0.0f;
         }
         Item item = itemStack.getItem();
-        if (item instanceof /*REMOVED:ArmorItem*/ Object armorItem) {
+        if (item instanceof /*REMOVED:item_class*/ Void) {
             net.minecraft.world.item.ArmorMaterial material = armorItem.getMaterial();
             if (material == ArmorMaterials.LEATHER) score += 100;
             else if (material == ArmorMaterials.CHAIN) score += 200;
