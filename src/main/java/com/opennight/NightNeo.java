@@ -50,3 +50,4 @@ public class NightNeo {
         moduleManager.register(new AntiStaff());
         moduleManager.register(new FastPlace());
     }
+}
