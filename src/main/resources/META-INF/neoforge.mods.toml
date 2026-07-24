@@ -1,0 +1,11 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+
+[[mods]]
+modId="night"
+version="1.0"
+displayName="OpenNIGHT"
+logoFile=""
+displayURL="https://github.com/LY-QWQ/openNight"
+authors="OpenNIGHT"
+description="OpenNIGHT client for NeoForge 1.21.8"
