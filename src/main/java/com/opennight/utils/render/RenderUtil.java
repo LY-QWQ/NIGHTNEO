@@ -52,8 +52,8 @@ public final class RenderUtil
 extends ClientBase {
 
     public static class ShadowTexture {
-        public client.opennight.render.ResourceLocationWrapper resourceLocation =
-                new client.opennight.render.ResourceLocationWrapper("texture/remote/"
+        public com.opennight.render.ResourceLocationWrapper resourceLocation =
+                new com.opennight.render.ResourceLocationWrapper("texture/remote/"
                         + org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric(16));
 
         public ShadowTexture(java.awt.image.BufferedImage image) {

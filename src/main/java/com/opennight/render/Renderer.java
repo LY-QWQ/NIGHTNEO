@@ -10,7 +10,7 @@ import org.lwjgl.opengl.GL13;
 import org.lwjgl.opengl.GL14;
 import org.lwjgl.opengl.GL33;
 import com.opennight.ClientBase;
-import com.opennight.NightClient;
+import com.opennight.NightNeo;
 import com.opennight.render.DrawContext;
 import com.opennight.utils.misc.ReflectionUtil;
 import sun.misc.Unsafe;

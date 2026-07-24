@@ -10,7 +10,6 @@ import com.opennight.NightNeo;
 import com.opennight.event.impl.GlRenderEvent;
 import com.opennight.event.impl.Render2DEvent;
 import com.opennight.modules.Module;
-import com.opennight.modules.impl.render.Interface;
 import com.opennight.render.DrawContext;
 import com.opennight.render.FontRenderer;
 import com.opennight.render.FontPresets;
