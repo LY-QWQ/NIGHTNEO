@@ -9,7 +9,7 @@ import com.opennight.utils.misc.ChatUtil;
 
 public class ToggleCommand extends Command {
     public ToggleCommand() {
-        super("toggle", "t");
+        super("toggle", new String[]{"t"});
     }
 
     @Override
@@ -26,5 +26,10 @@ public class ToggleCommand extends Command {
         } catch (ModuleNotFoundException e) {
             ChatUtil.print("Module not found: " + args[0]);
         }
+    }
+
+    @Override
+    public String[] onTab(String[] args) {
+        return new String[0];
     }
 }

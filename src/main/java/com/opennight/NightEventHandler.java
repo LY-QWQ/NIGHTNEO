@@ -19,8 +19,7 @@ public class NightEventHandler {
     @SubscribeEvent
     public void onRenderGui(RenderGuiEvent.Post e) {
         float pt = e.getPartialTick().getGameTimeDeltaTicks();
-        var pose = e.getGuiGraphics().pose();
-        NightNeo.eventBus.call(new Render2DEvent(pose, e.getGuiGraphics(), pt));
+        NightNeo.eventBus.call(new Render2DEvent(new com.mojang.blaze3d.vertex.PoseStack(), e.getGuiGraphics(), pt));
     }
 
     @SubscribeEvent

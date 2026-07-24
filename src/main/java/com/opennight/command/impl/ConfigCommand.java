@@ -6,7 +6,7 @@ import com.opennight.utils.misc.ChatUtil;
 
 public class ConfigCommand extends Command {
     public ConfigCommand() {
-        super("config", "cfg", "conf");
+        super("config", new String[]{"cfg", "conf"});
     }
 
     @Override
@@ -27,5 +27,11 @@ public class ConfigCommand extends Command {
             }
             default -> ChatUtil.print("Usage: .config <save|load>");
         }
+    }
+
+    @Override
+    public String[] onTab(String[] args) {
+        if (args.length <= 1) return new String[]{"save", "load"};
+        return new String[0];
     }
 }

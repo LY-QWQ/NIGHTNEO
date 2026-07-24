@@ -8,6 +8,7 @@ import com.opennight.settings.impl.BooleanSetting;
 import com.opennight.settings.impl.NumberSetting;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 
@@ -23,6 +24,7 @@ public class NameTags extends Module {
         if (mc.player == null || mc.level == null) return;
         PoseStack pose = event.poseStack();
         float pt = event.partialTick();
+        Font font = mc.font;
 
         for (Player player : mc.level.players()) {
             if (player == mc.player || player.isSpectator()) continue;
@@ -37,10 +39,9 @@ public class NameTags extends Module {
 
             String text = player.getName().getString();
             if (showHealth.getValue()) text += " \u00a7c" + (int) player.getHealth();
-            int w = mc.font.width(text);
-            mc.font.drawInBatch8xOutline(mc.font.plainSubstrByWidth(text, 80).toCharArray(), -w / 2f, 0,
-                    0xFFFFFFFF, 0x40000000, pose.last().pose(), mc.renderBuffers().bufferSource(),
-                    0xF000F0);
+
+            font.drawInBatch(text, -font.width(text) / 2f, 0, 0xFFFFFFFF, false, pose.last().pose(),
+                    mc.renderBuffers().bufferSource(), Font.DisplayMode.SEE_THROUGH, 0x40000000, 0xF000F0);
             pose.popPose();
         }
     }

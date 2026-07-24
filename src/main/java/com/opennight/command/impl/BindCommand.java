@@ -9,7 +9,7 @@ import com.opennight.utils.misc.ChatUtil;
 
 public class BindCommand extends Command {
     public BindCommand() {
-        super("bind", "b", "keybind");
+        super("bind", new String[]{"b", "keybind"});
     }
 
     @Override
@@ -23,18 +23,17 @@ public class BindCommand extends Command {
             Module module = mm.getModule(args[0]);
             int key = 0;
             if (args.length >= 2) {
-                key = org.lwjgl.glfw.GLFW.glfwGetKeyScancode(
-                    Integer.parseInt(args[1].toUpperCase().startsWith("KEY_") ? args[1].toUpperCase() : "KEY_" + args[1].toUpperCase())
-                );
-                if (key < 0) {
-                    ChatUtil.print("Invalid key: " + args[1]);
-                    return;
-                }
+                key = args[1].codePointAt(0);
             }
             module.setKey(key);
-            ChatUtil.print("Bound " + module.getName() + " to key " + args[1]);
+            ChatUtil.print("Bound " + module.getName());
         } catch (ModuleNotFoundException e) {
             ChatUtil.print("Module not found: " + args[0]);
         }
+    }
+
+    @Override
+    public String[] onTab(String[] args) {
+        return new String[0];
     }
 }
