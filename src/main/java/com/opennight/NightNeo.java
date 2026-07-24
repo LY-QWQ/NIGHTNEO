@@ -3,10 +3,13 @@ package com.opennight;
 import com.opennight.event.EventBus;
 import com.opennight.manager.ModuleManager;
 import com.opennight.module.impl.combat.KillAura;
+import com.opennight.module.impl.exploit.Disabler;
 import com.opennight.module.impl.misc.AutoClicker;
 import com.opennight.module.impl.movement.Fly;
+import com.opennight.module.impl.movement.Scaffold;
 import com.opennight.module.impl.movement.Sprint;
 import com.opennight.module.impl.render.FullBright;
+import com.opennight.module.impl.render.NameTags;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.bus.api.IEventBus;
 import org.slf4j.Logger;
@@ -30,7 +33,10 @@ public class NightNeo {
     private void registerModules() {
         moduleManager.register(new KillAura());
         moduleManager.register(new AutoClicker());
+        moduleManager.register(new Disabler());
         moduleManager.register(new Fly());
+        moduleManager.register(new NameTags());
+        moduleManager.register(new Scaffold());
         moduleManager.register(new Sprint());
         moduleManager.register(new FullBright());
     }
