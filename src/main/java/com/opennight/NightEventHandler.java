@@ -17,11 +17,6 @@ public class NightEventHandler {
     }
 
     @SubscribeEvent
-    public void onClientStopping(ClientStoppingEvent e) {
-        NightNeo.getInstance().shutdown();
-    }
-
-    @SubscribeEvent
     public void onRenderGui(RenderGuiEvent.Post e) {
         float pt = e.getPartialTick().getGameTimeDeltaTicks();
         var pose = e.getGuiGraphics().pose();
