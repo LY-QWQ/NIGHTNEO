@@ -102,7 +102,7 @@ extends ClientBase {
         if (packet instanceof ClientboundTabListPacket) {
             return true;
         }
-        if (packet instanceof ClientboundDisconnectPacket) {
+        if (false) {
             return true;
         }
         if (packet instanceof ClientboundLevelChunkPacketData) {
@@ -111,13 +111,13 @@ extends ClientBase {
         if (packet instanceof ClientboundForgetLevelChunkPacket) {
             return true;
         }
-        if (packet instanceof ClientboundPongResponsePacket) {
+        if (false) {
             return true;
         }
         if (packet instanceof ClientboundLoginPacket) {
             return true;
         }
-        if (packet instanceof ClientboundGameProfilePacket) {
+        if (false) {
             return true;
         }
         if (packet instanceof ClientboundMapItemDataPacket) {
@@ -129,7 +129,7 @@ extends ClientBase {
         if (packet instanceof ClientboundSetEntityMotionPacket) {
             return true;
         }
-        if (packet instanceof ClientboundCustomPayloadPacket) {
+        if (false) {
             return true;
         }
         if (packet instanceof ClientboundPlayerChatPacket) {

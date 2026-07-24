@@ -35,7 +35,7 @@ extends ClientBase {
 
     public static void updateMatrices() {
         floatBuffer.clear();
-        RenderSystem.getProjectionMatrix().get(floatBuffer);
+        /*1.21 TBD*/;
         projectionMatrix.set(floatBuffer);
         floatBuffer.clear();
         RenderSystem.getModelViewMatrix().get(floatBuffer);

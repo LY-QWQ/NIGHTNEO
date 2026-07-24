@@ -82,10 +82,10 @@ extends ClientBase {
 
     public static int getArmorPoints(LivingEntity livingEntity) {
         int totalDefense = 0;
-        for (ItemStack itemStack : livingEntity.getArmorSlots()) {
+        for (ItemStack itemStack : livingEntity.getArmorContents()) {
             Item item = itemStack.getItem();
-            if (!(item instanceof /*REMOVED:item_class*/ Void)) continue;
-            totalDefense += armorItem.getDefense();
+            if (!(item instanceof net.minecraft.world.item.Item)) continue;
+            totalDefense += 1 /*1.21 TBD*/;
         }
         return totalDefense;
     }

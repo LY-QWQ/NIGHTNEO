@@ -92,7 +92,7 @@ extends ClientBase {
         if (entity == null || mc.level == null) {
             return null;
         }
-        float partialTicks = mc.timer.getGameTimeDeltaTicks();
+        float partialTicks = mc.getTimer().getGameTimeDeltaTicks();
         Vec3 eyePos = entity.getEyePosition(partialTicks);
         Vec3 lookDir = RotationUtil.directionFromRotation(rotation);
         Vec3 endPos = eyePos.add(lookDir.x * range, lookDir.y * range, lookDir.z * range);

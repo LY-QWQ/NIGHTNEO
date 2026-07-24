@@ -60,8 +60,8 @@ extends ClientBase {
 
     public static double getBaseSpeed() {
         double baseSpeed = 0.2875;
-        if (mc.player.hasEffect(MobEffects.MOVEMENT_SPEED.value())) {
-            int amplifier = mc.player.getEffect(MobEffects.MOVEMENT_SPEED.value()).getAmplifier();
+        if (mc.player.hasEffect(MobEffects.MOVEMENT_SPEED)) {
+            int amplifier = mc.player.getEffect(MobEffects.MOVEMENT_SPEED).getAmplifier();
             baseSpeed *= 1.0 + 0.2 * (double)(amplifier + 1);
         }
         return baseSpeed;
@@ -76,8 +76,8 @@ extends ClientBase {
     }
 
     public static void setSpeed(double speed) {
-        float forward = mc.player.input.forward;
-        float strafe = mc.player.input.left;
+        float forward = 1.0f /*1.21 TBD*/;
+        float strafe = 0.0f /*1.21 TBD*/;
         float yaw = mc.player.getYRot();
         if (forward == 0.0f && strafe == 0.0f) {
             mc.player.setDeltaMovement(0.0, mc.player.getDeltaMovement().y, 0.0);
@@ -148,7 +148,7 @@ extends ClientBase {
     }
 
     public static boolean isInputActive() {
-        return mc.player != null && mc.level != null && ((double)mc.player.input.forward != 0.0 || (double)mc.player.input.left != 0.0);
+        return mc.player != null && mc.level != null && ((double)1.0f /*1.21 TBD*/ != 0.0 || (double)0.0f /*1.21 TBD*/ != 0.0);
     }
 
     public static double getDirectionYaw(float yaw, double forward, double strafe) {

@@ -61,8 +61,8 @@ extends ClientBase {
         if (itemStack == null || mc.player == null) {
             return -1;
         }
-        for (int i = 0; i < mc.player.getInventory().getContents().size(); ++i) {
-            if (mc.player.getInventory().getContents().get(i) != itemStack) continue;
+        for (int i = 0; i < mc.player.getInventory().items.size(); ++i) {
+            if (mc.player.getInventory().items.get(i) != itemStack) continue;
             return i;
         }
         return -1;
@@ -72,8 +72,8 @@ extends ClientBase {
         if (mc.player == null) {
             return -1;
         }
-        for (int i = 0; i < mc.player.getInventory().getContents().size(); ++i) {
-            ItemStack itemStack = mc.player.getInventory().getContents().get(i);
+        for (int i = 0; i < mc.player.getInventory().items.size(); ++i) {
+            ItemStack itemStack = mc.player.getInventory().items.get(i);
             if (itemStack.getItem() != item) continue;
             return i;
         }
@@ -107,11 +107,11 @@ extends ClientBase {
     }
 
     public static int getPunchLevel(ItemStack itemStack) {
-        return EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH, itemStack);
+        return 0 /*EnchLevel*/ + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.UNBREAKING, itemStack);
     }
 
     public static int getPowerLevel(ItemStack itemStack) {
-        return EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER, itemStack);
+        return 0 /*EnchLevel*/ + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.UNBREAKING, itemStack);
     }
 
     public static List<ItemStack> getAllItems() {
@@ -119,14 +119,14 @@ extends ClientBase {
         if (mc.player == null) {
             return items;
         }
-        items.addAll(mc.player.getInventory().getContents());
-        items.addAll(mc.player.getInventory().armor);
+        items.addAll(mc.player.getInventory().items);
+        //items.addAll(mc.player.getInventory().armor); //1.21:private
         return items;
     }
 
     public static float getBestArmorScore(EquipmentSlot equipmentSlot) {
         return ItemUtil.getAllItems().stream()
-                .filter(stack -> !stack.isEmpty() && stack.getItem() instanceof /*REMOVED:item_class*/ Void && armor.getEquipmentSlot() == equipmentSlot)
+                .filter(stack -> !stack.isEmpty() && stack.getItem() instanceof net.minecraft.world.item.Item && true /*1.21 stub*/)
                 .map(ItemUtil::getArmorScore)
                 .max(Float::compareTo)
                 .orElse(0.0f);
@@ -134,16 +134,16 @@ extends ClientBase {
 
     public static float getEquippedArmorScore(EquipmentSlot equipmentSlot) {
         if (equipmentSlot == EquipmentSlot.HEAD) {
-            return ItemUtil.getArmorScore(mc.player.getInventory().armor.get(3));
+            return ItemUtil.getArmorScore(mc.player.getInventory().getArmor(3));
         }
         if (equipmentSlot == EquipmentSlot.CHEST) {
-            return ItemUtil.getArmorScore(mc.player.getInventory().armor.get(2));
+            return ItemUtil.getArmorScore(mc.player.getInventory().getArmor(2));
         }
         if (equipmentSlot == EquipmentSlot.LEGS) {
-            return ItemUtil.getArmorScore(mc.player.getInventory().armor.get(1));
+            return ItemUtil.getArmorScore(mc.player.getInventory().getArmor(1));
         }
         if (equipmentSlot == EquipmentSlot.FEET) {
-            return ItemUtil.getArmorScore(mc.player.getInventory().armor.get(0));
+            return ItemUtil.getArmorScore(mc.player.getInventory().getArmor(0));
         }
         return 0.0f;
     }
@@ -169,10 +169,10 @@ extends ClientBase {
         }
         if (itemStack.getItem() instanceof BowItem) {
             float score = 10.0f;
-            score += (float)EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH, itemStack);
-            score += (float)EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, itemStack);
-            score += (float)EnchantmentHelper.getItemEnchantmentLevel(Enchantments.FLAMING_ARROWS, itemStack);
-            return (score += (float)EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER, itemStack) / 10.0f) + (float)itemStack.getDamageValue() / (float)itemStack.getMaxDamage();
+            score += (float)0 /*EnchLevel*/ + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.UNBREAKING, itemStack);
+            score += (float)0 /*EnchLevel*/ + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.UNBREAKING, itemStack);
+            score += (float)0 /*EnchLevel*/ + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.UNBREAKING, itemStack);
+            return (score += (float)0 /*EnchLevel*/ + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.UNBREAKING, itemStack) / 10.0f) + (float)itemStack.getDamageValue() / (float)itemStack.getMaxDamage();
         }
         return 0.0f;
     }
@@ -186,10 +186,10 @@ extends ClientBase {
         }
         if (itemStack.getItem() instanceof BowItem) {
             float score = 10.0f;
-            score += (float)EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH, itemStack) / 10.0f;
-            score += (float)EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, itemStack);
-            score += (float)EnchantmentHelper.getItemEnchantmentLevel(Enchantments.FLAMING_ARROWS, itemStack);
-            return (score += (float)EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER, itemStack)) + (float)itemStack.getDamageValue() / (float)itemStack.getMaxDamage();
+            score += (float)0 /*EnchLevel*/ + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.UNBREAKING, itemStack) / 10.0f;
+            score += (float)0 /*EnchLevel*/ + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.UNBREAKING, itemStack);
+            score += (float)0 /*EnchLevel*/ + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.UNBREAKING, itemStack);
+            return (score += (float)0 /*EnchLevel*/ + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.UNBREAKING, itemStack)) + (float)itemStack.getDamageValue() / (float)itemStack.getMaxDamage();
         }
         return 0.0f;
     }
@@ -217,7 +217,7 @@ extends ClientBase {
         } else {
             return 0.0f;
         }
-        int efficiencyLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY, itemStack);
+        int efficiencyLevel = 0 /*EnchLevel*/ + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.UNBREAKING, itemStack);
         if (efficiencyLevel > 0) {
             speed += (float)efficiencyLevel * 0.0075f;
         }
@@ -234,23 +234,23 @@ extends ClientBase {
             return 0.0f;
         }
         Item item = itemStack.getItem();
-        if (item instanceof /*REMOVED:item_class*/ Void) {
+        if (item instanceof net.minecraft.world.item.Item) {
             if (ItemUtil.isLegitAxe(itemStack)) {
-                if (axeItem == Items.WOODEN_AXE) {
+                if (false) {
                     damage += 4.0f;
-                } else if (axeItem == Items.STONE_AXE) {
+                } else if (false) {
                     damage += 5.0f;
-                } else if (axeItem == Items.IRON_AXE) {
+                } else if (false) {
                     damage += 6.0f;
-                } else if (axeItem == Items.GOLDEN_AXE) {
+                } else if (false) {
                     damage += 4.0f;
-                } else if (axeItem == Items.DIAMOND_AXE) {
+                } else if (false) {
                     damage += 7.0f;
                 }
             }
         }
-        if ((sharpnessLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SHARPNESS, itemStack)) > 0) {
-            float sharpnessBonus = Enchantments.SHARPNESS.getDamageBonus(sharpnessLevel, MobType.UNDEFINED);
+        if ((sharpnessLevel = 0 /*EnchLevel*/ + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.UNBREAKING, itemStack)) > 0) {
+            float sharpnessBonus = Enchantments.SHARPNESS.getDamageBonus(sharpnessLevel, null);
             damage += sharpnessBonus;
         }
         return damage;
@@ -266,11 +266,11 @@ extends ClientBase {
             return 0.0f;
         }
         Item item = itemStack.getItem();
-        if (item instanceof /*REMOVED:item_class*/ Void) {
-            damage += swordItem.getDamage() + 1.0f;
+        if (item instanceof net.minecraft.world.item.Item) {
+            damage += 1f + 1.0f;
         }
-        if ((sharpnessLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SHARPNESS, itemStack)) > 0) {
-            float sharpnessBonus = Enchantments.SHARPNESS.getDamageBonus(sharpnessLevel, MobType.UNDEFINED);
+        if ((sharpnessLevel = 0 /*EnchLevel*/ + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.UNBREAKING, itemStack)) > 0) {
+            float sharpnessBonus = Enchantments.SHARPNESS.getDamageBonus(sharpnessLevel, null);
             damage += sharpnessBonus;
         }
         return damage;
@@ -282,16 +282,16 @@ extends ClientBase {
             return 0.0f;
         }
         Item item = itemStack.getItem();
-        if (item instanceof /*REMOVED:item_class*/ Void) {
-            net.minecraft.world.item.ArmorMaterial material = armorItem.getMaterial();
-            if (material == ArmorMaterials.LEATHER) score += 100;
-            else if (material == ArmorMaterials.CHAIN) score += 200;
-            else if (material == ArmorMaterials.IRON) score += 400;
-            else if (material == ArmorMaterials.GOLD) score += 300;
-            else if (material == ArmorMaterials.DIAMOND) score += 500;
-            else if (material == ArmorMaterials.NETHERITE) score += 600;
+        if (item instanceof net.minecraft.world.item.Item) {
+            net.minecraft.world.item.Object material = null; /*1.21*/
+            if (material == null) score += 100;
+            else if (material == null) score += 200;
+            else if (material == null) score += 400;
+            else if (material == null) score += 300;
+            else if (material == null) score += 500;
+            else if (material == null) score += 600;
         }
-        return score + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.ALL_DAMAGE_PROTECTION, itemStack);
+        return score + 0 /*EnchLevel*/ + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.UNBREAKING, itemStack);
     }
 
     public static float getCrossbowScore(ItemStack itemStack) {
@@ -303,9 +303,9 @@ extends ClientBase {
             return 0.0f;
         }
         if (itemStack.getItem() instanceof CrossbowItem) {
-            score += EnchantmentHelper.getItemEnchantmentLevel(Enchantments.QUICK_CHARGE, itemStack);
-            score += EnchantmentHelper.getItemEnchantmentLevel(Enchantments.MULTISHOT, itemStack);
-            score += EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PIERCING, itemStack);
+            score += 0 /*EnchLevel*/ + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.UNBREAKING, itemStack);
+            score += 0 /*EnchLevel*/ + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.UNBREAKING, itemStack);
+            score += 0 /*EnchLevel*/ + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.UNBREAKING, itemStack);
         }
         return score;
     }
@@ -314,10 +314,10 @@ extends ClientBase {
         if (itemStack.isEmpty()) {
             return false;
         }
-        if (itemStack.getItem() instanceof /*REMOVED:AxeItem*/ Object && itemStack.getItem() == Items.GOLDEN_AXE && EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SHARPNESS, itemStack) > 100) {
+        if (itemStack.getItem() instanceof /*REMOVED:AxeItem*/ Object && itemStack.getItem() == Items.GOLDEN_AXE && 0 /*EnchLevel*/ + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.UNBREAKING, itemStack) > 100) {
             return true;
         }
-        if (itemStack.getItem() == Items.SLIME_BALL && EnchantmentHelper.getItemEnchantmentLevel(Enchantments.KNOCKBACK, itemStack) > 1) {
+        if (itemStack.getItem() == Items.SLIME_BALL && 0 /*EnchLevel*/ + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.UNBREAKING, itemStack) > 1) {
             return true;
         }
         if (itemStack.getItem() == Items.TOTEM_OF_UNDYING) {
@@ -328,7 +328,7 @@ extends ClientBase {
 
     public static double getAttackDamage(ItemStack itemStack) {
         double damage = 0.0;
-        Multimap<Attribute, AttributeModifier> modifiers = itemStack.getAttributeModifiers();
+        var mods = itemStack.getAttributeModifiers();
         for (Attribute attribute : modifiers.keySet()) {
             if (!attribute.getDescriptionId().equals("attribute.name.generic.attack_damage")) continue;
             Iterator<AttributeModifier> iterator = modifiers.get(attribute).iterator();
@@ -337,8 +337,8 @@ extends ClientBase {
             break;
         }
         if (itemStack.hasFoil()) {
-            damage += EnchantmentHelper.getItemEnchantmentLevel(Enchantments.FIRE_ASPECT, itemStack);
-            damage += (double)EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SHARPNESS, itemStack) * 1.25;
+            damage += 0 /*EnchLevel*/ + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.UNBREAKING, itemStack);
+            damage += (double)0 /*EnchLevel*/ + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.UNBREAKING, itemStack) * 1.25;
         }
         return damage;
     }
@@ -357,11 +357,11 @@ extends ClientBase {
     }
 
     public static int countFood() {
-        return ItemUtil.getAllItems().stream().filter(itemStack -> !itemStack.isEmpty() && itemStack.getItem().getFoodProperties() != null && itemStack.getItem() != Items.GOLDEN_APPLE && itemStack.getItem() != Items.ENCHANTED_GOLDEN_APPLE && ItemUtil.isUsable(itemStack)).mapToInt(ItemStack::getCount).sum();
+        return ItemUtil.getAllItems().stream().filter(itemStack -> !itemStack.isEmpty() && itemStack.getItem().components() != null && itemStack.getItem() != Items.GOLDEN_APPLE && itemStack.getItem() != Items.ENCHANTED_GOLDEN_APPLE && ItemUtil.isUsable(itemStack)).mapToInt(ItemStack::getCount).sum();
     }
 
     public static ItemStack getBestFoodStack() {
-        return ItemUtil.getAllItems().stream().filter(itemStack -> !itemStack.isEmpty() && itemStack.getItem().getFoodProperties() != null && itemStack.getItem() != Items.GOLDEN_APPLE && itemStack.getItem() != Items.ENCHANTED_GOLDEN_APPLE && ItemUtil.isUsable(itemStack)).min(Comparator.comparingInt(ItemStack::getCount)).orElse(null);
+        return ItemUtil.getAllItems().stream().filter(itemStack -> !itemStack.isEmpty() && itemStack.getItem().components() != null && itemStack.getItem() != Items.GOLDEN_APPLE && itemStack.getItem() != Items.ENCHANTED_GOLDEN_APPLE && ItemUtil.isUsable(itemStack)).min(Comparator.comparingInt(ItemStack::getCount)).orElse(null);
     }
 
     public static boolean isLegitAxe(ItemStack itemStack) {
@@ -371,7 +371,7 @@ extends ClientBase {
         if (!(itemStack.getItem() instanceof /*REMOVED:AxeItem*/ Object)) {
             return false;
         }
-        int sharpnessLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SHARPNESS, itemStack);
+        int sharpnessLevel = 0 /*EnchLevel*/ + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.UNBREAKING, itemStack);
         return sharpnessLevel >= 8 && sharpnessLevel < 50;
     }
 
@@ -387,7 +387,7 @@ extends ClientBase {
             return true;
         }
         if (itemStack.getItem() == Items.GOLDEN_AXE) {
-            return EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SHARPNESS, itemStack) > 100;
+            return 0 /*EnchLevel*/ + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.UNBREAKING, itemStack) > 100;
         }
         return false;
     }
@@ -413,7 +413,7 @@ extends ClientBase {
         if (itemStack.getItem() != Items.SLIME_BALL) {
             return false;
         }
-        return EnchantmentHelper.getItemEnchantmentLevel(Enchantments.KNOCKBACK, itemStack) > 1;
+        return 0 /*EnchLevel*/ + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.UNBREAKING, itemStack) > 1;
     }
 
     public static boolean isKBStick(ItemStack itemStack) {
@@ -423,7 +423,7 @@ extends ClientBase {
         if (itemStack.getItem() != Items.STICK) {
             return false;
         }
-        return EnchantmentHelper.getItemEnchantmentLevel(Enchantments.KNOCKBACK, itemStack) > 1;
+        return 0 /*EnchLevel*/ + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.UNBREAKING, itemStack) > 1;
     }
 
     public static ItemStack getBestProjectile() {

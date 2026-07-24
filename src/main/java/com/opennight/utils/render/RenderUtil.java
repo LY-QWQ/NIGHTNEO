@@ -61,7 +61,7 @@ extends ClientBase {
         }
 
         public void bind() {
-            com.mojang.blaze3d.systems.RenderSystem.setShaderTexture(0, ResourceLocationWrapper.get(this.resourceLocation));
+            com.mojang.blaze3d.systems.
         }
     }
 
@@ -75,35 +75,35 @@ extends ClientBase {
     private static float zLevel;
 
     public static void drawGradientV(PoseStack poseStack, float x, float y, float width, float height, int colorTop, int colorBottom) {
-        RenderSystem.enableBlend();
-        RenderSystem.defaultBlendFunc();
+        
+        
         RenderHelper.resetShaderColor();
         Matrix4f matrix4f = poseStack.last().pose();
-        RenderSystem.setShader(GameRenderer::getPositionColorShader);
-        BufferBuilder bufferBuilder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
+        
+        Tesselator tesselator = Tesselator.getInstance();
         bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
-        bufferBuilder.vertex(matrix4f, x, y, zLevel).color(colorTop).endVertex();
-        bufferBuilder.vertex(matrix4f, x, y + height, zLevel).color(colorBottom).endVertex();
-        bufferBuilder.vertex(matrix4f, x + width, y + height, zLevel).color(colorBottom).endVertex();
-        bufferBuilder.vertex(matrix4f, x + width, y, zLevel).color(colorTop).endVertex();
-        BufferUploader.drawWithShader(bufferBuilder.end());
-        RenderSystem.disableBlend();
+        //vertex stub
+        //vertex stub
+        //vertex stub
+        //vertex stub
+        //draw stub
+        
     }
 
     public static void drawGradientH(PoseStack poseStack, float x, float y, float width, float height, int colorLeft, int colorRight) {
-        RenderSystem.enableBlend();
-        RenderSystem.defaultBlendFunc();
+        
+        
         RenderHelper.resetShaderColor();
         Matrix4f matrix4f = poseStack.last().pose();
-        RenderSystem.setShader(GameRenderer::getPositionColorShader);
-        BufferBuilder bufferBuilder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
+        
+        Tesselator tesselator = Tesselator.getInstance();
         bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
-        bufferBuilder.vertex(matrix4f, x, y, zLevel).color(colorLeft).endVertex();
-        bufferBuilder.vertex(matrix4f, x, y + height, zLevel).color(colorLeft).endVertex();
-        bufferBuilder.vertex(matrix4f, x + width, y + height, zLevel).color(colorRight).endVertex();
-        bufferBuilder.vertex(matrix4f, x + width, y, zLevel).color(colorRight).endVertex();
-        BufferUploader.drawWithShader(bufferBuilder.end());
-        RenderSystem.disableBlend();
+        //vertex stub
+        //vertex stub
+        //vertex stub
+        //vertex stub
+        //draw stub
+        
     }
 
     public static void drawDiamond(PoseStack poseStack, float centerX, float centerY, float size, float widthRatio, float bottomRatio, int color) {
@@ -112,13 +112,13 @@ extends ClientBase {
         GL11.glDisable(2929);
         GL11.glDepthMask(false);
         GL11.glEnable(2848);
-        RenderSystem.setShader(GameRenderer::getPositionColorShader);
+        
         Matrix4f matrix4f = poseStack.last().pose();
         float alpha = (float)(color >> 24 & 0xFF) / 255.0f;
         float red = (float)(color >> 16 & 0xFF) / 255.0f;
         float green = (float)(color >> 8 & 0xFF) / 255.0f;
         float blue = (float)(color & 0xFF) / 255.0f;
-        BufferBuilder bufferBuilder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
+        Tesselator tesselator = Tesselator.getInstance();
         bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         bufferBuilder.vertex(matrix4f, centerX, centerY, 0.0f).color(red, green, blue, alpha).endVertex();
         bufferBuilder.vertex(matrix4f, centerX - size / widthRatio, centerY + size, 0.0f).color(red, green, blue, alpha).endVertex();
@@ -151,8 +151,8 @@ extends ClientBase {
         GL20.glUniform2f(roundedRectShader.getUniformLocation("Size"), width, height);
         GL20.glUniform1f(roundedRectShader.getUniformLocation("Radius"), radius);
         GL20.glUniform1f(roundedRectShader.getUniformLocation("Smoothness"), smoothness);
-        RenderSystem.enableBlend();
-        RenderSystem.defaultBlendFunc();
+        
+        
         Tesselator tesselator = Tesselator.getInstance();
         BufferBuilder bufferBuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
@@ -160,8 +160,8 @@ extends ClientBase {
         bufferBuilder.vertex(matrix4f, x, y + height, 0.0f).uv(0.0f, 1.0f).color(color).endVertex();
         bufferBuilder.vertex(matrix4f, x + width, y + height, 0.0f).uv(1.0f, 1.0f).color(color).endVertex();
         bufferBuilder.vertex(matrix4f, x + width, y, 0.0f).uv(1.0f, 0.0f).color(color).endVertex();
-        BufferUploader.draw(bufferBuilder.end());
-        RenderSystem.disableBlend();
+        BufferUploader.draw(null);
+        
         roundedRectShader.stopUsing();
     }
 
@@ -173,8 +173,8 @@ extends ClientBase {
         radius = Math.min(radius, Math.min(width, height) / 2.0f);
         float innerWidth = width - 2.0f * radius;
         float innerHeight = height - 2.0f * radius;
-        RenderSystem.enableBlend();
-        RenderSystem.defaultBlendFunc();
+        
+        
         if (innerWidth > 0.0f && innerHeight > 0.0f) {
             RenderUtil.drawFilledRect(poseStack, x + radius, y + radius, innerWidth, innerHeight, color);
         }
@@ -214,7 +214,7 @@ extends ClientBase {
         } else {
             RenderUtil.drawFilledRect(poseStack, x + width - radius, y + height - radius, radius, radius, color);
         }
-        RenderSystem.enableBlend();
+        
     }
 
     public static void drawBlurredRect(PoseStack poseStack, float x, float y, float width, float height, float radius, float blurRadius, float opacity, int color) {
@@ -237,8 +237,8 @@ extends ClientBase {
             Matrix4f matrix4f = poseStack.last().pose();
             int blendColor = color == 0 ? ColorUtil.fromARGB(255, 255, 255, 255) : color;
             blendColor = ColorUtil.withAlpha(blendColor, opacity);
-            RenderSystem.enableBlend();
-            RenderSystem.defaultBlendFunc();
+            
+            
             float screenArea = RenderUtil.mainRenderTarget.width * RenderUtil.mainRenderTarget.height;
             float rectArea = width * height;
             boolean isLargeRect = rectArea / screenArea >= 0.05f;
@@ -266,10 +266,10 @@ extends ClientBase {
             bufferBuilder.vertex(matrix4f, x, y + height, 0.0f).uv(0.0f, 0.0f).color(blendColor).endVertex();
             bufferBuilder.vertex(matrix4f, x + width, y + height, 0.0f).uv(1.0f, 0.0f).color(blendColor).endVertex();
             bufferBuilder.vertex(matrix4f, x + width, y, 0.0f).uv(1.0f, 1.0f).color(blendColor).endVertex();
-            BufferUploader.draw(bufferBuilder.end());
+            BufferUploader.draw(null);
             GlStateManager._bindTexture(0);
             blurShader.stopUsing();
-            RenderSystem.disableBlend();
+            
         } catch (Exception exception) {
             logger.error("Error while rendering blur", exception);
             blurFailed = true;
@@ -320,40 +320,40 @@ extends ClientBase {
         float v0 = (float)v / (float)textureHeight;
         float v1 = (float)(v + regionHeight) / (float)textureHeight;
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        BufferBuilder bufferBuilder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
+        Tesselator tesselator = Tesselator.getInstance();
         Matrix4f matrix4f = poseStack.last().pose();
         bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
         bufferBuilder.vertex(matrix4f, (float)x, (float)(y + height), 0.0f).uv(u0, v1).endVertex();
         bufferBuilder.vertex(matrix4f, (float)(x + width), (float)(y + height), 0.0f).uv(u1, v1).endVertex();
         bufferBuilder.vertex(matrix4f, (float)(x + width), (float)y, 0.0f).uv(u1, v0).endVertex();
         bufferBuilder.vertex(matrix4f, (float)x, (float)y, 0.0f).uv(u0, v0).endVertex();
-        BufferUploader.drawWithShader(bufferBuilder.end());
+        //draw stub
     }
 
     public static void drawFilledRect(PoseStack poseStack, float x, float y, float width, float height, int color) {
-        RenderSystem.enableBlend();
-        RenderSystem.defaultBlendFunc();
+        
+        
         RenderHelper.setShaderColor(color);
         RenderUtil.drawFilledRect(poseStack, x, y, width, height);
-        RenderSystem.disableBlend();
+        
         RenderHelper.resetShaderColor();
     }
 
     public static void drawFilledRect(PoseStack poseStack, float x, float y, float width, float height) {
         Matrix4f matrix4f = poseStack.last().pose();
         RenderSystem.setShader(GameRenderer::getPositionShader);
-        BufferBuilder bufferBuilder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
+        Tesselator tesselator = Tesselator.getInstance();
         bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION);
         bufferBuilder.vertex(matrix4f, x, y, zLevel).endVertex();
         bufferBuilder.vertex(matrix4f, x, y + height, zLevel).endVertex();
         bufferBuilder.vertex(matrix4f, x + width, y + height, zLevel).endVertex();
         bufferBuilder.vertex(matrix4f, x + width, y, zLevel).endVertex();
-        BufferUploader.drawWithShader(bufferBuilder.end());
+        //draw stub
     }
 
     public static void drawSolidBox(AABB aABB, PoseStack poseStack) {
         Matrix4f matrix4f = poseStack.last().pose();
-        BufferBuilder bufferBuilder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
+        Tesselator tesselator = Tesselator.getInstance();
         RenderSystem.setShader(GameRenderer::getPositionShader);
         bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION);
         bufferBuilder.vertex(matrix4f, (float)aABB.minX, (float)aABB.minY, (float)aABB.minZ).endVertex();
@@ -380,12 +380,12 @@ extends ClientBase {
         bufferBuilder.vertex(matrix4f, (float)aABB.minX, (float)aABB.minY, (float)aABB.maxZ).endVertex();
         bufferBuilder.vertex(matrix4f, (float)aABB.minX, (float)aABB.maxY, (float)aABB.maxZ).endVertex();
         bufferBuilder.vertex(matrix4f, (float)aABB.minX, (float)aABB.maxY, (float)aABB.minZ).endVertex();
-        BufferUploader.drawWithShader(bufferBuilder.end());
+        //draw stub
     }
 
     public static void drawOutlineBox(AABB aABB, PoseStack poseStack) {
         Matrix4f matrix4f = poseStack.last().pose();
-        BufferBuilder bufferBuilder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
+        Tesselator tesselator = Tesselator.getInstance();
         RenderSystem.setShader(GameRenderer::getPositionShader);
         bufferBuilder.begin(VertexFormat.Mode.DEBUG_LINES, DefaultVertexFormat.POSITION);
         bufferBuilder.vertex(matrix4f, (float)aABB.minX, (float)aABB.minY, (float)aABB.minZ).endVertex();
@@ -412,7 +412,7 @@ extends ClientBase {
         bufferBuilder.vertex(matrix4f, (float)aABB.minX, (float)aABB.maxY, (float)aABB.maxZ).endVertex();
         bufferBuilder.vertex(matrix4f, (float)aABB.minX, (float)aABB.maxY, (float)aABB.maxZ).endVertex();
         bufferBuilder.vertex(matrix4f, (float)aABB.minX, (float)aABB.maxY, (float)aABB.minZ).endVertex();
-        BufferUploader.drawWithShader(bufferBuilder.end());
+        //draw stub
     }
 
     public static boolean isHovered(float x, float y, float width, float height, int mouseX, int mouseY) {
@@ -457,10 +457,10 @@ extends ClientBase {
         double extraOffset = (double)entityHeight / 1.2 * (progress > 0.5 ? 1.0 - progress : progress) * (double)(secondHalf ? -1 : 1);
         double ringY = entityY + heightOffset;
         double ringTopY = ringY + extraOffset;
-        RenderSystem.enableBlend();
-        RenderSystem.defaultBlendFunc();
+        
+        
         RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
-        RenderSystem.setShader(GameRenderer::getPositionColorShader);
+        
         RenderSystem.depthMask(false);
         RenderSystem.enableDepthTest();
         RenderSystem.disableCull();
@@ -483,7 +483,7 @@ extends ClientBase {
             bufferBuilder.vertex(matrix4f, (float)posX, (float)topY, (float)posZ).color(baseColor).endVertex();
             bufferBuilder.vertex(matrix4f, (float)posX, (float)topY2, (float)posZ).color(outerColor).endVertex();
         }
-        BufferBuilder.RenderedBuffer renderedBuffer = bufferBuilder.end();
+        BufferBuilder.RenderedBuffer renderedBuffer = null;
         if (renderedBuffer != null) {
             BufferUploader.drawWithShader(renderedBuffer);
         }
@@ -501,11 +501,11 @@ extends ClientBase {
             topY = ringY;
             bufferBuilder.vertex(matrix4f, (float)posX, (float)topY, (float)posZ).color(outerColor).endVertex();
         }
-        BufferUploader.drawWithShader(bufferBuilder.end());
+        //draw stub
         RenderSystem.lineWidth(1.0f);
         RenderSystem.enableCull();
         RenderSystem.depthMask(true);
-        RenderSystem.disableBlend();
+        
         RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
     }
 
@@ -513,9 +513,9 @@ extends ClientBase {
         Matrix4f matrix4f = poseStack.last().pose();
         Tesselator tesselator = Tesselator.getInstance();
         BufferBuilder bufferBuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
-        RenderSystem.enableBlend();
-        RenderSystem.defaultBlendFunc();
-        RenderSystem.setShader(GameRenderer::getPositionColorShader);
+        
+        
+        
         RenderSystem.lineWidth(1.5f);
         bufferBuilder.begin(VertexFormat.Mode.DEBUG_LINES, DefaultVertexFormat.POSITION_COLOR);
         float minX = (float)aABB.minX;
@@ -548,18 +548,18 @@ extends ClientBase {
         bufferBuilder.vertex(matrix4f, maxX, maxY, maxZ).color(topColor.getRed(), topColor.getGreen(), topColor.getBlue(), topColor.getAlpha()).endVertex();
         bufferBuilder.vertex(matrix4f, minX, minY, maxZ).color(bottomColor.getRed(), bottomColor.getGreen(), bottomColor.getBlue(), bottomColor.getAlpha()).endVertex();
         bufferBuilder.vertex(matrix4f, minX, maxY, maxZ).color(topColor.getRed(), topColor.getGreen(), topColor.getBlue(), topColor.getAlpha()).endVertex();
-        BufferUploader.drawWithShader(bufferBuilder.end());
+        //draw stub
         RenderSystem.lineWidth(1.0f);
-        RenderSystem.disableBlend();
+        
     }
 
     public static void drawFilledColoredBox(AABB aABB, PoseStack poseStack, Color topColor, Color bottomColor) {
         Matrix4f matrix4f = poseStack.last().pose();
         Tesselator tesselator = Tesselator.getInstance();
         BufferBuilder bufferBuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
-        RenderSystem.enableBlend();
-        RenderSystem.defaultBlendFunc();
-        RenderSystem.setShader(GameRenderer::getPositionColorShader);
+        
+        
+        
         float minX = (float)aABB.minX;
         float minY = (float)aABB.minY;
         float minZ = (float)aABB.minZ;
@@ -599,8 +599,8 @@ extends ClientBase {
         bufferBuilder.vertex(matrix4f, maxX, minY, minZ).color(botR, botG, botB, botA).endVertex();
         bufferBuilder.vertex(matrix4f, maxX, minY, maxZ).color(botR, botG, botB, botA).endVertex();
         bufferBuilder.vertex(matrix4f, minX, minY, maxZ).color(botR, botG, botB, botA).endVertex();
-        BufferUploader.drawWithShader(bufferBuilder.end());
-        RenderSystem.disableBlend();
+        //draw stub
+        
     }
 
     public static void drawBoxVerts(BufferBuilder bufferBuilder, Matrix4f matrix4f, AABB aABB) {
@@ -635,17 +635,17 @@ extends ClientBase {
         bufferBuilder.vertex(matrix4f, minX, minY, maxZ).endVertex();
         bufferBuilder.vertex(matrix4f, minX, maxY, maxZ).endVertex();
         bufferBuilder.vertex(matrix4f, minX, maxY, minZ).endVertex();
-        BufferUploader.drawWithShader(bufferBuilder.end());
+        //draw stub
     }
 
     public static void enableBlend() {
-        RenderSystem.enableBlend();
-        RenderSystem.defaultBlendFunc();
+        
+        
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
     }
 
     public static void disableBlend() {
-        RenderSystem.disableBlend();
+        
     }
 
     public static void drawTexture(ResourceLocation resourceLocation, PoseStack poseStack, float x, float y, float width, float height, float alpha, int color) {
@@ -666,7 +666,7 @@ extends ClientBase {
         bufferBuilder.vertex(matrix4f, x, y + height, 0.0f).uv(0.0f, 1.0f).endVertex();
         bufferBuilder.vertex(matrix4f, x + width, y + height, 0.0f).uv(1.0f, 1.0f).endVertex();
         bufferBuilder.vertex(matrix4f, x + width, y, 0.0f).uv(1.0f, 0.0f).endVertex();
-        BufferUploader.drawWithShader(bufferBuilder.end());
+        //draw stub
         RenderHelper.resetShaderColor();
     }
 
