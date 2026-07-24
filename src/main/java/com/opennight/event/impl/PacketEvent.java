@@ -1,34 +1,30 @@
 package com.opennight.event.impl;
 
-import com.opennight.event.Cancellable;
-import com.opennight.event.Event;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.Generated;
 import net.minecraft.network.protocol.Packet;
+import com.opennight.event.Event;
 
-public class PacketEvent extends Event implements Cancellable {
-    private boolean cancelled;
-    private final Packet<?> packet;
-    private final boolean incoming;
-
-    public PacketEvent(Packet<?> p, boolean incoming) {
-        this.packet = p;
-        this.incoming = incoming;
-    }
-
-    public Packet<?> getPacket() {
-        return packet;
-    }
+public class PacketEvent
+extends Event {
+    @Getter @Setter
+    private Packet<?> packet;
+    @Setter
+    private boolean incoming;
 
     public boolean isIncoming() {
-        return incoming;
+        return !this.incoming;
     }
 
-    @Override
-    public boolean isCancelled() {
-        return cancelled;
+    @Generated
+    public boolean isIncomingRaw() {
+        return this.incoming;
     }
 
-    @Override
-    public void setCancelled(boolean cancelled) {
-        this.cancelled = cancelled;
+    @Generated
+    public PacketEvent(Packet<?> packet, boolean incoming) {
+        this.packet = packet;
+        this.incoming = incoming;
     }
 }

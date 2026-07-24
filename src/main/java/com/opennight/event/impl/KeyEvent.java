@@ -1,27 +1,55 @@
 package com.opennight.event.impl;
 
+import lombok.Getter;
+import lombok.Generated;
 import com.opennight.event.Event;
 
-public class KeyEvent extends Event {
-    private final int key;
-    private final int action;
-    private final int modifiers;
+public class KeyEvent
+extends Event {
+    @Getter
+    private final int keyCode;
+    @Getter
+    private final boolean pressed;
 
-    public KeyEvent(int key, int action, int mods) {
-        this.key = key;
-        this.action = action;
-        this.modifiers = mods;
+    @Generated
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof KeyEvent otherEvent)) {
+            return false;
+        }
+        if (!otherEvent.canEqual(this)) {
+            return false;
+        }
+        if (this.getKeyCode() != otherEvent.getKeyCode()) {
+            return false;
+        }
+        return this.isPressed() == otherEvent.isPressed();
     }
 
-    public int getKey() {
-        return key;
+    @Generated
+    protected boolean canEqual(Object other) {
+        return other instanceof KeyEvent;
     }
 
-    public int getAction() {
-        return action;
+    @Generated
+    public int hashCode() {
+        int prime = 59;
+        int result = 1;
+        result = result * 59 + this.getKeyCode();
+        result = result * 59 + (this.isPressed() ? 79 : 97);
+        return result;
     }
 
-    public int getModifiers() {
-        return modifiers;
+    @Generated
+    public String toString() {
+        return "KeyEvent(key=" + this.getKeyCode() + ", state=" + this.isPressed() + ")";
+    }
+
+    @Generated
+    public KeyEvent(int keyCode, boolean pressed) {
+        this.keyCode = keyCode;
+        this.pressed = pressed;
     }
 }

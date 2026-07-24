@@ -2,5 +2,6 @@ package com.opennight.event;
 
 public interface Cancellable {
     boolean isCancelled();
-    void setCancelled(boolean cancelled);
+
+    void setCancelled(boolean var1);
 }

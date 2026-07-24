@@ -1,6 +1,7 @@
 package com.opennight.event.impl;
 
-import com.opennight.event.Event;
+import com.opennight.event.EventMarker;
 
-public class WorldChangeEvent extends Event {
+public class WorldChangeEvent
+implements EventMarker {
 }
