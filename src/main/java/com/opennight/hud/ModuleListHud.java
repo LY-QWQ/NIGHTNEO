@@ -242,7 +242,7 @@ public class ModuleListHud extends HudElement {
                 this.rowStates.remove(module);
                 continue;
             }
-            if (importantOnly && module.getCategory() == client.opennight.modules.Category.RENDER) {
+            if (importantOnly && module.getCategory() == com.opennight.modules.Category.RENDER) {
                 this.rowStates.remove(module);
                 continue;
             }

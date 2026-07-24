@@ -122,7 +122,7 @@ extends HudElement {
         boolean wasDragging = this.isDragging();
         super.stopDragging();
         if (wasDragging) {
-            client.opennight.NightNeo.instance.getConfigManager().saveAll();
+            com.opennight.NightNeo.instance.getConfigManager().saveAll();
         }
     }
 

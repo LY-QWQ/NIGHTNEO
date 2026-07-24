@@ -22,7 +22,7 @@ extends Command {
         }
 
         @EventTarget
-        public void onKey(client.opennight.event.impl.KeyEvent event) {
+        public void onKey(com.opennight.event.impl.KeyEvent event) {
             if (!event.isPressed()) return;
             int keyCode = event.getKeyCode();
             if (keyCode == 256) {

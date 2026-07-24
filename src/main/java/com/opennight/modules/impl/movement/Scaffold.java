@@ -97,8 +97,8 @@ public class Scaffold extends Module {
     private static final FontRenderer shelfLabelFont = FontPresets.axiformaBold(12);
     private static final FontRenderer shelfBpsFont = FontPresets.axiformaBold(13);
     private static final FontRenderer shelfBlocksFont = FontPresets.axiformaBold(13);
-    private final client.opennight.utils.animation.SpringAnimation shelfProgress =
-            new client.opennight.utils.animation.SpringAnimation(300.0f, 1.0f, 25.0f, 1.0f);
+    private final com.opennight.utils.animation.SpringAnimation shelfProgress =
+            new com.opennight.utils.animation.SpringAnimation(300.0f, 1.0f, 25.0f, 1.0f);
     private int shelfInitialBlocks;
     private boolean shelfHudInitialized;
     private long hudLastFrameTime;

@@ -9,7 +9,7 @@ import net.minecraft.util.Mth;
 /**
  * Scoreboard HUD — data provider only.
  *
- * Actual rendering happens inside {@link client.opennight.patch.GuiPatch}
+ * Actual rendering happens inside {@link com.opennight.patch.GuiPatch}
  * where we have access to the original GuiGraphics from inside
  * Gui.render().  This avoids the buffer-flushing issue that occurs
  * when rendering on the separate onRender2D GuiGraphics.
@@ -75,7 +75,7 @@ public class ScoreboardHud extends HudElement {
         boolean wasDragging = isDragging();
         super.stopDragging();
         if (wasDragging) {
-            client.opennight.NightNeo.instance.getConfigManager().saveAll();
+            com.opennight.NightNeo.instance.getConfigManager().saveAll();
         }
     }
 }

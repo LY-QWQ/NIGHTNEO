@@ -31,9 +31,9 @@ extends HudElement {
         public String effectName;
         public String durationText;
         public String amplifierText;
-        public final client.opennight.utils.animation.SmoothAnimationTimer fadeAnim = new client.opennight.utils.animation.SmoothAnimationTimer();
-        public final client.opennight.utils.animation.SmoothAnimationTimer heightAnim = new client.opennight.utils.animation.SmoothAnimationTimer();
-        public final client.opennight.utils.animation.SmoothAnimationTimer widthAnim = new client.opennight.utils.animation.SmoothAnimationTimer();
+        public final com.opennight.utils.animation.SmoothAnimationTimer fadeAnim = new com.opennight.utils.animation.SmoothAnimationTimer();
+        public final com.opennight.utils.animation.SmoothAnimationTimer heightAnim = new com.opennight.utils.animation.SmoothAnimationTimer();
+        public final com.opennight.utils.animation.SmoothAnimationTimer widthAnim = new com.opennight.utils.animation.SmoothAnimationTimer();
         public boolean removing = false;
         public boolean visible = true;
 
@@ -77,15 +77,15 @@ extends HudElement {
         }
 
         public void show(float targetHeight) {
-            this.heightAnim.animate(1.0, 0.3, client.opennight.utils.math.Easings.EASE_OUT_POW3);
-            this.widthAnim.animate(targetHeight, 0.3, client.opennight.utils.math.Easings.EASE_OUT_POW3);
+            this.heightAnim.animate(1.0, 0.3, com.opennight.utils.math.Easings.EASE_OUT_POW3);
+            this.widthAnim.animate(targetHeight, 0.3, com.opennight.utils.math.Easings.EASE_OUT_POW3);
         }
 
         public void startRemove() {
             if (this.removing) return;
             this.removing = true;
-            this.heightAnim.animate(0.0, 0.2, client.opennight.utils.math.Easings.EASE_IN_POW3);
-            this.widthAnim.animate(0.0, 0.2, client.opennight.utils.math.Easings.EASE_IN_POW3);
+            this.heightAnim.animate(0.0, 0.2, com.opennight.utils.math.Easings.EASE_IN_POW3);
+            this.widthAnim.animate(0.0, 0.2, com.opennight.utils.math.Easings.EASE_IN_POW3);
         }
 
         public boolean isRemoveDone() {

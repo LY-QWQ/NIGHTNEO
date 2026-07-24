@@ -127,7 +127,7 @@ public final class ModuleInit {
         LOGGER.info("Defined {} classes, extracted {} resources to {} ({} ms)",
                 classCount, resourceCount, resourceDir, ms);
 
-        Class<?> bootstrapCls = Class.forName("client.opennight.dll.ClientInit", true, gameLoader);
+        Class<?> bootstrapCls = Class.forName("com.opennight.dll.ClientInit", true, gameLoader);
         LOGGER.info("ClientInit loader (should be gameLoader): {}", bootstrapCls.getClassLoader());
         Method start = bootstrapCls.getMethod("start", String.class);
         start.invoke(null, jarPath);

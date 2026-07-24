@@ -206,11 +206,11 @@ public final class ReflectionUtil {
     }
 
     public static String getMappedFieldName(Class<?> clazz, String fieldName) {
-        return client.opennight.asm.Bootstrap.remapField(clazz.getName().replace('.', '/'), fieldName);
+        return com.opennight.asm.Bootstrap.remapField(clazz.getName().replace('.', '/'), fieldName);
     }
 
     public static String getMappedMethodName(Class<?> clazz, String methodName, String descriptor) {
-        return client.opennight.asm.Bootstrap.remapMethod(clazz.getName().replace('.', '/'), methodName, descriptor);
+        return com.opennight.asm.Bootstrap.remapMethod(clazz.getName().replace('.', '/'), methodName, descriptor);
     }
 
     /**
@@ -222,7 +222,7 @@ public final class ReflectionUtil {
     private static Field resolveField(Class<?> clazz, String name) throws NoSuchFieldException {
         NoSuchFieldException last = null;
         for (Class<?> c = clazz; c != null; c = c.getSuperclass()) {
-            String srg = client.opennight.asm.Bootstrap.remapField(
+            String srg = com.opennight.asm.Bootstrap.remapField(
                     c.getName().replace('.', '/'), name);
             try {
                 return c.getDeclaredField(srg);
