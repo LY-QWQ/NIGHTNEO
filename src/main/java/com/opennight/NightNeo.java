@@ -23,5 +23,4 @@ public class NightNeo {
         registerModules();
     }
 
-        private void registerModules() {} }
-}
+        private void registerModules() {}
