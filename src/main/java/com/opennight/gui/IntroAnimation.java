@@ -2,14 +2,14 @@ package com.opennight.gui;
 
 import java.awt.Color;
 import com.opennight.ClientBase;
-import com.opennight.NightClient;
+import com.opennight.NightNeo;
 import com.opennight.event.impl.GlRenderEvent;
 import com.opennight.render.FontPresets;
 import com.opennight.render.FontRenderer;
 import com.opennight.render.GlHelper;
 import com.opennight.render.Paint;
 import com.opennight.event.EventTarget;
-import com.opennight.NightClient;
+import com.opennight.NightNeo;
 
 public class IntroAnimation
 extends ClientBase {
@@ -77,7 +77,7 @@ extends ClientBase {
             fadeFactor = 1.0f - IntroAnimation.clamp01((float)(elapsed - fadeOutStart) / 700.0f);
         }
 
-        String name = NightClient.CLIENT_NAME_UPPER;
+        String name = NightNeo.CLIENT_NAME_UPPER;
         FontRenderer glowFont = FontPresets.axiformaBold(68.0f * textScale);
         FontRenderer mainFont = FontPresets.axiformaBold(64.0f * textScale);
         float totalW = GlHelper.getStringWidth(name, mainFont);
@@ -102,7 +102,7 @@ extends ClientBase {
         if (!this.finished) {
             this.finished = true;
             try {
-                NightClient.instance.getEventBus().unregister(this);
+                NightNeo.instance.getEventBus().unregister(this);
             } catch (Throwable throwable) {
                 // empty catch block
             }

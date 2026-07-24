@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import net.minecraft.util.Mth;
-import com.opennight.NightClient;
+import com.opennight.NightNeo;
 import com.opennight.event.impl.GlRenderEvent;
 import com.opennight.event.impl.Render2DEvent;
 import com.opennight.modules.Module;
@@ -237,7 +237,7 @@ public class ModuleListHud extends HudElement {
     private List<AnimatedRow> updateRows() {
         FontRenderer font = FontPresets.pingfang(16.0f);
         boolean importantOnly = this.important.getValue();
-        for (Module module : NightClient.getInstance().getModuleManager().getModules()) {
+        for (Module module : NightNeo.getInstance().getModuleManager().getModules()) {
             if (module == this || module.getName().isEmpty() || module.isHiddenInModuleList()) {
                 this.rowStates.remove(module);
                 continue;
@@ -321,7 +321,7 @@ public class ModuleListHud extends HudElement {
         if (!this.isEnabled()) {
             return false;
         }
-        Interface interfaceModule = NightClient.getInstance().getModuleManager().getModule(Interface.class);
+        Interface interfaceModule = NightNeo.getInstance().getModuleManager().getModule(Interface.class);
         return interfaceModule == null || interfaceModule.isEnabled();
     }
 
@@ -606,7 +606,7 @@ public class ModuleListHud extends HudElement {
         boolean wasDragging = this.isDragging();
         super.stopDragging();
         if (wasDragging) {
-            NightClient.getInstance().getConfigManager().saveAll();
+            NightNeo.getInstance().getConfigManager().saveAll();
         }
     }
 

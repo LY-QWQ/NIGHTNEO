@@ -4,7 +4,7 @@ import java.awt.Color;
 
 import net.minecraft.client.gui.GuiGraphics;
 import com.opennight.ClientBase;
-import com.opennight.NightClient;
+import com.opennight.NightNeo;
 import com.opennight.gui.PanelClickGui;
 import com.opennight.modules.KeyBind;
 import com.opennight.modules.Module;
@@ -67,8 +67,8 @@ extends ClientBase {
         if (keyCode == 256) {
             if (this.targetModule != null) {
                 this.targetModule.setKey(-1);
-                if (NightClient.isReady()) {
-                    NightClient.instance.getConfigManager().saveAll();
+                if (NightNeo.isReady()) {
+                    NightNeo.instance.getConfigManager().saveAll();
                 }
                 PanelClickGui.panelClickGui.addToast(this.targetModule.getName() + " keybind cleared");
             }
@@ -77,8 +77,8 @@ extends ClientBase {
         }
         if (this.targetModule != null && keyCode != -1) {
             this.targetModule.setKey(keyCode);
-            if (NightClient.isReady()) {
-                NightClient.instance.getConfigManager().saveAll();
+            if (NightNeo.isReady()) {
+                NightNeo.instance.getConfigManager().saveAll();
             }
             KeyBind keyBind = new KeyBind(keyCode);
             String keyName = keyBind.getName();

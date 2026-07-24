@@ -7,7 +7,7 @@ import java.util.function.Consumer;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.player.AbstractClientPlayer;
 import com.opennight.ClientBase;
-import com.opennight.NightClient;
+import com.opennight.NightNeo;
 import com.opennight.gui.panel.SettingsPopup;
 import com.opennight.render.DrawContext;
 import com.opennight.render.FontPresets;
@@ -86,7 +86,7 @@ extends ClientBase {
     }
 
     private String getUserId() {
-        return NightClient.username != null && !NightClient.username.isEmpty() ? NightClient.username : "Unknown";
+        return NightNeo.username != null && !NightNeo.username.isEmpty() ? NightNeo.username : "Unknown";
     }
 
     private String getUserRole() {

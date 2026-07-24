@@ -9,7 +9,7 @@ import lombok.Getter;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
-import com.opennight.NightClient;
+import com.opennight.NightNeo;
 import com.opennight.gui.panel.CategoryBar;
 import com.opennight.gui.panel.KeybindOverlay;
 import com.opennight.gui.panel.ModuleListPanel;
@@ -113,8 +113,8 @@ extends Screen {
             this.openProgress = LerpUtil.lerp(this.openProgress, 0.0f, 0.1f);
             if (this.openProgress <= 0.0f) {
                 this.currentScaleSwitchState = PanelClickGui.OpenState.CLOSED;
-                if (NightClient.isReady()) {
-                    NightClient.instance.getConfigManager().saveAll();
+                if (NightNeo.isReady()) {
+                    NightNeo.instance.getConfigManager().saveAll();
                 }
                 this.minecraft.setScreen(null);
             }

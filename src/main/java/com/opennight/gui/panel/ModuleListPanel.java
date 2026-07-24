@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import net.minecraft.client.gui.GuiGraphics;
 import com.opennight.ClientBase;
-import com.opennight.NightClient;
+import com.opennight.NightNeo;
 import com.opennight.gui.PanelClickGui;
 import com.opennight.modules.Category;
 import com.opennight.modules.Module;
@@ -54,7 +54,7 @@ extends ClientBase {
             return;
         }
         this.searchQuery = query;
-        this.searchResults = !query.isEmpty() ? NightClient.instance.getModuleManager().getModules().stream().filter(module -> module.getName().toLowerCase().contains(query.toLowerCase())).sorted(Comparator.comparing(Module::getName)).collect(Collectors.toList()) : NightClient.instance.getModuleManager().getModules().stream().sorted(Comparator.comparing(Module::getName)).collect(Collectors.toList());
+        this.searchResults = !query.isEmpty() ? NightNeo.instance.getModuleManager().getModules().stream().filter(module -> module.getName().toLowerCase().contains(query.toLowerCase())).sorted(Comparator.comparing(Module::getName)).collect(Collectors.toList()) : NightNeo.instance.getModuleManager().getModules().stream().sorted(Comparator.comparing(Module::getName)).collect(Collectors.toList());
         this.currentCategory = null;
         this.scrollOffset = 0.0f;
         this.scrollTarget = 0.0f;
@@ -84,7 +84,7 @@ extends ClientBase {
                 this.animProgress = 0.0f;
             }
             this.currentCategory = category;
-            List<Module> filtered = this.currentModules = category == null ? null : NightClient.instance.getModuleManager().getModules().stream().filter(module -> module.getCategory() == category).sorted(Comparator.comparing(Module::getName)).collect(Collectors.toList());
+            List<Module> filtered = this.currentModules = category == null ? null : NightNeo.instance.getModuleManager().getModules().stream().filter(module -> module.getCategory() == category).sorted(Comparator.comparing(Module::getName)).collect(Collectors.toList());
         }
         if (this.animationState != ModuleListPanel.AnimationState.NONE) {
             this.animProgress = LerpUtil.smoothLerp(this.animProgress, 1.0f, 0.18f);
