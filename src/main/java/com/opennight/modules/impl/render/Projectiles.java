@@ -307,7 +307,7 @@ public class Projectiles extends Module {
             x += dx;
             z += dz;
             y += dy;
-            if (y < mc.level.getMinBuildHeight() - 10) break;
+            if (y < mc.level.getMinY() - 10) break;
             dx *= 0.99;
             dy *= 0.99;
             dz *= 0.99;

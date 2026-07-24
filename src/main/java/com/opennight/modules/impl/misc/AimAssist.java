@@ -62,7 +62,7 @@ extends Module {
             this.targetOffset = new Vec3(0.0, 0.0, 0.0);
             return;
         }
-        float frameTime = mc.getFrameTime();
+        float frameTime = mc.getTimer().getGameTimeDeltaTicks();
         List<? extends Player> list = mc.level.players();
         LocalPlayer localPlayer = mc.player;
         Vec3 eye = localPlayer.position().add(new Vec3(0.0, localPlayer.getEyeHeight(), 0.0));

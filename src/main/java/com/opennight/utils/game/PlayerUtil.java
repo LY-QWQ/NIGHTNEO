@@ -38,7 +38,7 @@ extends ClientBase {
         double dz = mc.player.getZ() - mc.player.zo;
         float speed = Mth.sqrt((float)(dx * dx + dz * dz)) * 4.0f;
         speed = Mth.clamp(speed, 0.0f, 1.0f);
-        mc.player.walkAnimation.update(speed, 0.4f);
+        mc.player.walkAnimation.update(speed, 0.4f, 1.0f);
     }
 
     public static void sendCarriedItem() {
@@ -82,7 +82,7 @@ extends ClientBase {
 
     public static int getArmorPoints(LivingEntity livingEntity) {
         int totalDefense = 0;
-        for (ItemStack itemStack : livingEntity.getArmorSlots()) {
+        for (ItemStack itemStack : livingEntity.getArmorAndBodySlots()) {
             Item item = itemStack.getItem();
             if (!(item instanceof /*REMOVED:item_class*/ Void)) continue;
             totalDefense += armorItem.getDefense();
@@ -130,11 +130,11 @@ extends ClientBase {
             return false;
         }
         if (belowState.isAir()) {
-            if (belowPos.getY() < mc.level.getMinBuildHeight()) {
+            if (belowPos.getY() < mc.level.getMinY()) {
                 return false;
             }
             if (mc.level.getBlockState(belowPos.below()).isAir()) {
-                return belowPos.below().getY() >= mc.level.getMinBuildHeight() && !mc.level.getBlockState(belowPos.below().below()).isAir();
+                return belowPos.below().getY() >= mc.level.getMinY() && !mc.level.getBlockState(belowPos.below().below()).isAir();
             }
         }
         return true;

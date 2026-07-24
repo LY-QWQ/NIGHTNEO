@@ -7,7 +7,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.neoforged.neoforge.client.ForgeHooksClient;
+import net.neoforged.neoforge.client.ClientHooks;
 import com.opennight.event.impl.SprintEvent;
 import com.opennight.modules.Category;
 import com.opennight.modules.Module;

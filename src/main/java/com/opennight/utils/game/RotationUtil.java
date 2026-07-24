@@ -246,7 +246,7 @@ extends ClientBase {
             for (int i = 0; i < 300; ++i) {
                 projectilePos = projectilePos.add(projectileVel);
                 projectileVel = new Vec3(projectileVel.x * drag, projectileVel.y * drag - gravity, projectileVel.z * drag);
-                if (projectilePos.y < (double)(mc.level.getMinBuildHeight() - 10)) continue block0;
+                if (projectilePos.y < (double)(mc.level.getMinY() - 10)) continue block0;
                 double traveledDist = Math.sqrt(Math.pow(projectilePos.x - eyePos.x, 2.0) + Math.pow(projectilePos.z - eyePos.z, 2.0));
                 if (!(traveledDist >= horizontalDist)) continue;
                 if (Math.abs(projectilePos.y - target.y) < 1.0) {
@@ -370,12 +370,12 @@ extends ClientBase {
 
     public static HitResult performRaycast(Rotation rotation) {
         AABB expandedBB;
-        double pickRange = mc.gameMode.getPickRange();
+        double pickRange = mc.gameMode.getBlockReachDistance();
         HitResult hitResult = RayTraceUtil.rayTrace(pickRange, 1.0f, false, rotation);
         Vec3 eyePos = mc.player.getEyePosition(1.0f);
         boolean checkClampedRange = false;
         double maxRangeSqr = pickRange;
-        if (mc.gameMode.hasFarPickRange()) {
+        if (mc.gameMode.false) {
             pickRange = maxRangeSqr = 6.0;
         } else if (pickRange > 3.0) {
             checkClampedRange = true;
@@ -391,7 +391,7 @@ extends ClientBase {
             Vec3 hitLocation = entityHitResult.getLocation();
             double hitDistSqr = eyePos.distanceToSqr(hitLocation);
             if (checkClampedRange && hitDistSqr > 9.0) {
-                hitResult = BlockHitResult.miss(hitLocation, Direction.getNearest(direction.x, direction.y, direction.z), BlockPos.containing(hitLocation));
+                hitResult = BlockHitResult.miss(hitLocation, Direction.getNearest((int)direction.x, (int)direction.y, (int)direction.z, Direction.DOWN), BlockPos.containing(hitLocation));
             } else if (hitDistSqr < maxRangeSqr || hitResult == null) {
                 hitResult = entityHitResult;
             }

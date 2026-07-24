@@ -11,7 +11,7 @@ import com.opennight.event.Event;
 public class RenderEntityEvent
 extends Event {
     @Getter
-    private final EntityRenderer<?> entityRenderer;
+    private final EntityRenderer<?, ?> entityRenderer;
     @Getter
     private final Entity entity;
     @Getter
@@ -35,7 +35,7 @@ extends Event {
     }
 
     @Generated
-    public RenderEntityEvent(EntityRenderer<?> entityRenderer, Entity entity, PoseStack poseStack, MultiBufferSource bufferSource, float partialTick, int packedLight, boolean cancelled) {
+    public RenderEntityEvent(EntityRenderer<?, ?> entityRenderer, Entity entity, PoseStack poseStack, MultiBufferSource bufferSource, float partialTick, int packedLight, boolean cancelled) {
         this.entityRenderer = entityRenderer;
         this.entity = entity;
         this.poseStack = poseStack;
@@ -46,13 +46,13 @@ extends Event {
     }
 
     public static class Pre extends RenderEntityEvent {
-        public Pre(EntityRenderer<?> renderer, Entity entity, PoseStack poseStack, MultiBufferSource bufferSource, float partialTick, int packedLight) {
+        public Pre(EntityRenderer<?, ?> renderer, Entity entity, PoseStack poseStack, MultiBufferSource bufferSource, float partialTick, int packedLight) {
             super(renderer, entity, poseStack, bufferSource, partialTick, packedLight, false);
         }
     }
 
     public static class Post extends RenderEntityEvent {
-        public Post(EntityRenderer<?> renderer, Entity entity, PoseStack poseStack, MultiBufferSource bufferSource, float partialTick, int packedLight) {
+        public Post(EntityRenderer<?, ?> renderer, Entity entity, PoseStack poseStack, MultiBufferSource bufferSource, float partialTick, int packedLight) {
             super(renderer, entity, poseStack, bufferSource, partialTick, packedLight, false);
         }
     }

@@ -357,7 +357,7 @@ extends Module {
         }
         if (this.blockSlotSetting.getValue().intValue() != 0) {
             int blockSlot = this.blockSlotSetting.getValue().intValue() - 1;
-            ItemStack currentBlock = mc.player.getInventory().items.get(blockSlot);
+            ItemStack currentBlock = mc.player.getInventory().getItems().get(blockSlot);
             ItemStack bestBlock = ItemUtil.getBestBlock();
             if (!(bestBlock == null || BlockUtil.isPlaceable(currentBlock) || this.offhandItemSetting.getValue().equals("Block") || !this.swapToSlot(blockSlot, bestBlock))) {
                 return true;
@@ -378,7 +378,7 @@ extends Module {
         if (this.swordSlotSetting.getValue().intValue() != 0) {
             ItemStack bestSword = ItemUtil.getBestSword();
             int swordSlot = this.swordSlotSetting.getValue().intValue() - 1;
-            ItemStack currentSword = mc.player.getInventory().items.get(swordSlot);
+            ItemStack currentSword = mc.player.getInventory().getItems().get(swordSlot);
             ItemStack bestSharpAxe = ItemUtil.getBestSharpAxe();
             if (ItemUtil.getAxeDamage(bestSharpAxe) > ItemUtil.getSwordDamage(bestSword)) {
                 bestSword = bestSharpAxe;
@@ -394,7 +394,7 @@ extends Module {
         if (this.pickaxeSlotSetting.getValue().intValue() != 0) {
             int pickaxeSlot = this.pickaxeSlotSetting.getValue().intValue() - 1;
             ItemStack bestPickaxe = ItemUtil.getBestPickaxe();
-            ItemStack currentPickaxe = mc.player.getInventory().items.get(pickaxeSlot);
+            ItemStack currentPickaxe = mc.player.getInventory().getItems().get(pickaxeSlot);
             if (bestPickaxe != null && bestPickaxe.getItem() instanceof /*REMOVED:PickaxeItem*/ Object && (ItemUtil.getDigSpeed(bestPickaxe) > ItemUtil.getDigSpeed(currentPickaxe) || !(currentPickaxe.getItem() instanceof /*REMOVED:PickaxeItem*/ Object)) && this.swapToSlot(pickaxeSlot, bestPickaxe)) {
                 return true;
             }
@@ -405,7 +405,7 @@ extends Module {
             float bestScore;
             ItemStack bestBow;
             int bowSlot = this.bowSlotSetting.getValue().intValue() - 1;
-            ItemStack currentBow = mc.player.getInventory().items.get(bowSlot);
+            ItemStack currentBow = mc.player.getInventory().getItems().get(bowSlot);
             if (this.bowPrioritySetting.getValue().equals("Crossbow")) {
                 bestBow = ItemUtil.getBestCrossbow();
                 bestScore = ItemUtil.getCrossbowScore(bestBow);
@@ -462,13 +462,13 @@ extends Module {
         if (this.crystalSlotSetting.getValue().intValue() != 0 && this.swapItemToSlot(this.crystalSlotSetting.getValue().intValue() - 1, Items.END_CRYSTAL)) {
             return true;
         }
-        List<Integer> slotIndices = IntStream.range(0, mc.player.getInventory().items.size()).boxed().collect(Collectors.toList());
+        List<Integer> slotIndices = IntStream.range(0, mc.player.getInventory().getItems().size()).boxed().collect(Collectors.toList());
         Collections.shuffle(slotIndices);
         Iterator<Integer> slotIterator = slotIndices.iterator();
         do {
             if (slotIterator.hasNext()) continue;
             return false;
-        } while ((dropStack = mc.player.getInventory().items.get((dropSlot = slotIterator.next()).intValue())).isEmpty() || this.isUsefulItem(dropStack));
+        } while ((dropStack = mc.player.getInventory().getItems().get((dropSlot = slotIterator.next()).intValue())).isEmpty() || this.isUsefulItem(dropStack));
         this.throwItem(dropStack);
         return true;
     }
@@ -490,8 +490,8 @@ extends Module {
             actionTimer.reset();
             return true;
         }
-        for (int slot = 0; slot < mc.player.getInventory().items.size(); ++slot) {
-            ItemStack candidate = mc.player.getInventory().items.get(slot);
+        for (int slot = 0; slot < mc.player.getInventory().getItems().size(); ++slot) {
+            ItemStack candidate = mc.player.getInventory().getItems().get(slot);
             if (candidate.isEmpty() || !(candidate.getItem() instanceof /*REMOVED:item_class*/ Void)) continue;
             float candidateScore = ItemUtil.getArmorScore(candidate);
             boolean isBestArmor = ItemUtil.getBestArmorScore(armorItem.getEquipmentSlot()) == candidateScore;
@@ -519,7 +519,7 @@ extends Module {
             this.moveToOffhand(slot);
             return true;
         }
-        ItemStack invStack = mc.player.getInventory().items.get(slot);
+        ItemStack invStack = mc.player.getInventory().getItems().get(slot);
         if (offhand.getCount() + invStack.getCount() > 64) {
             return false;
         }
@@ -608,7 +608,7 @@ extends Module {
         if (mc.gameMode == null || mc.player == null) {
             return false;
         }
-        ItemStack currentStack = mc.player.getInventory().items.get(targetSlot);
+        ItemStack currentStack = mc.player.getInventory().getItems().get(targetSlot);
         if (ItemUtil.isUsable(currentStack) && itemStack != currentStack && actionTimer.hasPassed(this.actionDelaySetting.getValue().intValue()) && (sourceSlot = ItemUtil.getSlot(itemStack)) != -1) {
             if (sourceSlot < 9) {
                 mc.gameMode.handleInventoryMouseClick(mc.player.inventoryMenu.containerId, sourceSlot + 36, targetSlot, ClickType.SWAP, mc.player);
@@ -627,7 +627,7 @@ extends Module {
         if (mc.gameMode == null || mc.player == null) {
             return false;
         }
-        ItemStack currentStack = mc.player.getInventory().items.get(targetSlot);
+        ItemStack currentStack = mc.player.getInventory().getItems().get(targetSlot);
         if (ItemUtil.isUsable(currentStack) && actionTimer.hasPassed(this.actionDelaySetting.getValue().intValue()) && (sourceSlot = ItemUtil.getSlot(item)) != -1) {
             if (currentStack.getItem() != item) {
                 if (sourceSlot < 9) {

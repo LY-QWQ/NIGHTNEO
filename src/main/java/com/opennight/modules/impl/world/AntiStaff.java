@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
 import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientboundAddPlayerPacket;
+import net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket;
 import net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket;
 import com.opennight.event.impl.PacketEvent;
 import com.opennight.modules.Category;

@@ -5,7 +5,7 @@ import java.util.Queue;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ServerboundKeepAlivePacket;
+import net.minecraft.network.protocol.common.ServerboundKeepAlivePacket;
 import org.apache.commons.lang3.tuple.Pair;
 import com.opennight.ClientBase;
 import com.opennight.event.impl.PacketEvent;

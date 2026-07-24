@@ -65,7 +65,7 @@ public class DamageGlow extends Module {
         }
         float headYawDelta = entity.getYHeadRot() - entity.yBodyRot;
         float pitch = entity.getXRot();
-        float tickCount = entity.tickCount + mc.getFrameTime();
+        float tickCount = entity.tickCount + mc.getTimer().getGameTimeDeltaTicks();
         EntitySnapshot snapshot = new EntitySnapshot(now, now + 1500L,
                 entity.getX(), entity.getY(), entity.getZ(),
                 entity.xo, entity.yo, entity.zo,

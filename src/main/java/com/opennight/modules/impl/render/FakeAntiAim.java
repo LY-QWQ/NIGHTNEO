@@ -92,7 +92,7 @@ public class FakeAntiAim extends Module {
     public void onCameraPitch(CameraPitchEvent e) {
         if (!isEnabled() || mc.player == null || !headPitchActive()) return;
         int tick = mc.player.tickCount;
-        e.setPitch(headPitchOffset(tick + mc.getFrameTime(), tick));
+        e.setPitch(headPitchOffset(tick + mc.getTimer().getGameTimeDeltaTicks(), tick));
     }
 
     @Override

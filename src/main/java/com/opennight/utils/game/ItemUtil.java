@@ -61,8 +61,8 @@ extends ClientBase {
         if (itemStack == null || mc.player == null) {
             return -1;
         }
-        for (int i = 0; i < mc.player.getInventory().items.size(); ++i) {
-            if (mc.player.getInventory().items.get(i) != itemStack) continue;
+        for (int i = 0; i < mc.player.getInventory().getItems().size(); ++i) {
+            if (mc.player.getInventory().getItems().get(i) != itemStack) continue;
             return i;
         }
         return -1;
@@ -72,8 +72,8 @@ extends ClientBase {
         if (mc.player == null) {
             return -1;
         }
-        for (int i = 0; i < mc.player.getInventory().items.size(); ++i) {
-            ItemStack itemStack = mc.player.getInventory().items.get(i);
+        for (int i = 0; i < mc.player.getInventory().getItems().size(); ++i) {
+            ItemStack itemStack = mc.player.getInventory().getItems().get(i);
             if (itemStack.getItem() != item) continue;
             return i;
         }
@@ -107,11 +107,11 @@ extends ClientBase {
     }
 
     public static int getPunchLevel(ItemStack itemStack) {
-        return EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS, itemStack);
+        return EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH, itemStack);
     }
 
     public static int getPowerLevel(ItemStack itemStack) {
-        return EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER_ARROWS, itemStack);
+        return EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER, itemStack);
     }
 
     public static List<ItemStack> getAllItems() {
@@ -119,7 +119,7 @@ extends ClientBase {
         if (mc.player == null) {
             return items;
         }
-        items.addAll(mc.player.getInventory().items);
+        items.addAll(mc.player.getInventory().getItems());
         items.addAll(mc.player.getInventory().armor);
         return items;
     }
@@ -169,10 +169,10 @@ extends ClientBase {
         }
         if (itemStack.getItem() instanceof BowItem) {
             float score = 10.0f;
-            score += (float)EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS, itemStack);
+            score += (float)EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH, itemStack);
             score += (float)EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, itemStack);
             score += (float)EnchantmentHelper.getItemEnchantmentLevel(Enchantments.FLAMING_ARROWS, itemStack);
-            return (score += (float)EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER_ARROWS, itemStack) / 10.0f) + (float)itemStack.getDamageValue() / (float)itemStack.getMaxDamage();
+            return (score += (float)EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER, itemStack) / 10.0f) + (float)itemStack.getDamageValue() / (float)itemStack.getMaxDamage();
         }
         return 0.0f;
     }
@@ -186,10 +186,10 @@ extends ClientBase {
         }
         if (itemStack.getItem() instanceof BowItem) {
             float score = 10.0f;
-            score += (float)EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS, itemStack) / 10.0f;
+            score += (float)EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH, itemStack) / 10.0f;
             score += (float)EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, itemStack);
             score += (float)EnchantmentHelper.getItemEnchantmentLevel(Enchantments.FLAMING_ARROWS, itemStack);
-            return (score += (float)EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER_ARROWS, itemStack)) + (float)itemStack.getDamageValue() / (float)itemStack.getMaxDamage();
+            return (score += (float)EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER, itemStack)) + (float)itemStack.getDamageValue() / (float)itemStack.getMaxDamage();
         }
         return 0.0f;
     }
