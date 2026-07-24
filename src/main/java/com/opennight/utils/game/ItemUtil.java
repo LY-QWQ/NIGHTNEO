@@ -8,15 +8,15 @@ import java.util.Iterator;
 import java.util.List;
 import lombok.Generated;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.MobType;
+// REMOVED: import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.ArmorMaterials;
+// REMOVED: import net.minecraft.world.item.ArmorItem;
+// REMOVED: import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.ArrowItem;
-import net.minecraft.world.item.AxeItem;
+// REMOVED: import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.BookItem;
+// REMOVED: import net.minecraft.world.item.BookItem;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.ExperienceBottleItem;
@@ -25,10 +25,10 @@ import net.minecraft.world.item.FishingRodItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.PickaxeItem;
+// REMOVED: import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.PlayerHeadItem;
-import net.minecraft.world.item.ShovelItem;
-import net.minecraft.world.item.SwordItem;
+// REMOVED: import net.minecraft.world.item.ShovelItem;
+// REMOVED: import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -91,7 +91,7 @@ extends ClientBase {
             }
             return blockItem.getBlock() != Blocks.COBWEB;
         }
-        if (item instanceof BookItem) {
+        if (item instanceof /*REMOVED:BookItem*/ Object) {
             return false;
         }
         if (item instanceof ExperienceBottleItem) {
@@ -126,7 +126,7 @@ extends ClientBase {
 
     public static float getBestArmorScore(EquipmentSlot equipmentSlot) {
         return ItemUtil.getAllItems().stream()
-                .filter(stack -> !stack.isEmpty() && stack.getItem() instanceof ArmorItem armor && armor.getEquipmentSlot() == equipmentSlot)
+                .filter(stack -> !stack.isEmpty() && stack.getItem() instanceof /*REMOVED:ArmorItem*/ Object armor && armor.getEquipmentSlot() == equipmentSlot)
                 .map(ItemUtil::getArmorScore)
                 .max(Float::compareTo)
                 .orElse(0.0f);
@@ -150,14 +150,14 @@ extends ClientBase {
 
     public static float getBestSwordDamage() {
         return ItemUtil.getAllItems().stream()
-                .filter(stack -> !stack.isEmpty() && stack.getItem() instanceof SwordItem)
+                .filter(stack -> !stack.isEmpty() && stack.getItem() instanceof /*REMOVED:SwordItem*/ Object)
                 .map(ItemUtil::getSwordDamage)
                 .max(Float::compareTo)
                 .orElse(0.0f);
     }
 
     public static ItemStack getBestSword() {
-        return ItemUtil.getAllItems().stream().filter(itemStack -> !itemStack.isEmpty() && itemStack.getItem() instanceof SwordItem).max(Comparator.comparingInt(itemStack -> (int)(ItemUtil.getSwordDamage(itemStack) * 100.0f))).orElse(null);
+        return ItemUtil.getAllItems().stream().filter(itemStack -> !itemStack.isEmpty() && itemStack.getItem() instanceof /*REMOVED:SwordItem*/ Object).max(Comparator.comparingInt(itemStack -> (int)(ItemUtil.getSwordDamage(itemStack) * 100.0f))).orElse(null);
     }
 
     public static float getBowScore(ItemStack itemStack) {
@@ -208,11 +208,11 @@ extends ClientBase {
         if (ItemUtil.isLegitAxe(itemStack)) {
             return 0.0f;
         }
-        if (itemStack.getItem() instanceof PickaxeItem) {
+        if (itemStack.getItem() instanceof /*REMOVED:PickaxeItem*/ Object) {
             speed += itemStack.getDestroySpeed(Blocks.STONE.defaultBlockState());
-        } else if (itemStack.getItem() instanceof AxeItem) {
+        } else if (itemStack.getItem() instanceof /*REMOVED:AxeItem*/ Object) {
             speed += itemStack.getDestroySpeed(Blocks.OAK_LOG.defaultBlockState());
-        } else if (itemStack.getItem() instanceof ShovelItem) {
+        } else if (itemStack.getItem() instanceof /*REMOVED:ShovelItem*/ Object) {
             speed += itemStack.getDestroySpeed(Blocks.DIRT.defaultBlockState());
         } else {
             return 0.0f;
@@ -234,7 +234,7 @@ extends ClientBase {
             return 0.0f;
         }
         Item item = itemStack.getItem();
-        if (item instanceof AxeItem axeItem) {
+        if (item instanceof /*REMOVED:AxeItem*/ Object axeItem) {
             if (ItemUtil.isLegitAxe(itemStack)) {
                 if (axeItem == Items.WOODEN_AXE) {
                     damage += 4.0f;
@@ -266,7 +266,7 @@ extends ClientBase {
             return 0.0f;
         }
         Item item = itemStack.getItem();
-        if (item instanceof SwordItem swordItem) {
+        if (item instanceof /*REMOVED:SwordItem*/ Object swordItem) {
             damage += swordItem.getDamage() + 1.0f;
         }
         if ((sharpnessLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SHARPNESS, itemStack)) > 0) {
@@ -282,7 +282,7 @@ extends ClientBase {
             return 0.0f;
         }
         Item item = itemStack.getItem();
-        if (item instanceof ArmorItem armorItem) {
+        if (item instanceof /*REMOVED:ArmorItem*/ Object armorItem) {
             net.minecraft.world.item.ArmorMaterial material = armorItem.getMaterial();
             if (material == ArmorMaterials.LEATHER) score += 100;
             else if (material == ArmorMaterials.CHAIN) score += 200;
@@ -314,7 +314,7 @@ extends ClientBase {
         if (itemStack.isEmpty()) {
             return false;
         }
-        if (itemStack.getItem() instanceof AxeItem && itemStack.getItem() == Items.GOLDEN_AXE && EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SHARPNESS, itemStack) > 100) {
+        if (itemStack.getItem() instanceof /*REMOVED:AxeItem*/ Object && itemStack.getItem() == Items.GOLDEN_AXE && EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SHARPNESS, itemStack) > 100) {
             return true;
         }
         if (itemStack.getItem() == Items.SLIME_BALL && EnchantmentHelper.getItemEnchantmentLevel(Enchantments.KNOCKBACK, itemStack) > 1) {
@@ -368,7 +368,7 @@ extends ClientBase {
         if (itemStack.isEmpty()) {
             return false;
         }
-        if (!(itemStack.getItem() instanceof AxeItem)) {
+        if (!(itemStack.getItem() instanceof /*REMOVED:AxeItem*/ Object)) {
             return false;
         }
         int sharpnessLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SHARPNESS, itemStack);
@@ -455,31 +455,31 @@ extends ClientBase {
     }
 
     public static float getBestPickaxeScore() {
-        return ItemUtil.getAllItems().stream().filter(itemStack -> !itemStack.isEmpty() && itemStack.getItem() instanceof PickaxeItem && ItemUtil.isUsable(itemStack)).map(ItemUtil::getDigSpeed).max(Float::compareTo).orElse(0.0f);
+        return ItemUtil.getAllItems().stream().filter(itemStack -> !itemStack.isEmpty() && itemStack.getItem() instanceof /*REMOVED:PickaxeItem*/ Object && ItemUtil.isUsable(itemStack)).map(ItemUtil::getDigSpeed).max(Float::compareTo).orElse(0.0f);
     }
 
     public static ItemStack getBestPickaxe() {
-        return ItemUtil.getAllItems().stream().filter(itemStack -> !itemStack.isEmpty() && itemStack.getItem() instanceof PickaxeItem && ItemUtil.isUsable(itemStack)).max(Comparator.comparingInt(itemStack -> (int)(ItemUtil.getDigSpeed(itemStack) * 100.0f))).orElse(null);
+        return ItemUtil.getAllItems().stream().filter(itemStack -> !itemStack.isEmpty() && itemStack.getItem() instanceof /*REMOVED:PickaxeItem*/ Object && ItemUtil.isUsable(itemStack)).max(Comparator.comparingInt(itemStack -> (int)(ItemUtil.getDigSpeed(itemStack) * 100.0f))).orElse(null);
     }
 
     public static float getBestAxeScore() {
-        return ItemUtil.getAllItems().stream().filter(itemStack -> !itemStack.isEmpty() && itemStack.getItem() instanceof AxeItem && !ItemUtil.isLegitAxe(itemStack) && ItemUtil.isUsable(itemStack)).map(ItemUtil::getDigSpeed).max(Float::compareTo).orElse(0.0f);
+        return ItemUtil.getAllItems().stream().filter(itemStack -> !itemStack.isEmpty() && itemStack.getItem() instanceof /*REMOVED:AxeItem*/ Object && !ItemUtil.isLegitAxe(itemStack) && ItemUtil.isUsable(itemStack)).map(ItemUtil::getDigSpeed).max(Float::compareTo).orElse(0.0f);
     }
 
     public static ItemStack getBestAxe() {
-        return ItemUtil.getAllItems().stream().filter(itemStack -> !itemStack.isEmpty() && itemStack.getItem() instanceof AxeItem && !ItemUtil.isLegitAxe(itemStack) && ItemUtil.isUsable(itemStack)).max(Comparator.comparingInt(itemStack -> (int)(ItemUtil.getDigSpeed(itemStack) * 100.0f))).orElse(null);
+        return ItemUtil.getAllItems().stream().filter(itemStack -> !itemStack.isEmpty() && itemStack.getItem() instanceof /*REMOVED:AxeItem*/ Object && !ItemUtil.isLegitAxe(itemStack) && ItemUtil.isUsable(itemStack)).max(Comparator.comparingInt(itemStack -> (int)(ItemUtil.getDigSpeed(itemStack) * 100.0f))).orElse(null);
     }
 
     public static ItemStack getBestSharpAxe() {
-        return ItemUtil.getAllItems().stream().filter(itemStack -> !itemStack.isEmpty() && itemStack.getItem() instanceof AxeItem && ItemUtil.isLegitAxe(itemStack) && ItemUtil.isUsable(itemStack) && !ItemUtil.isOtherCheat(itemStack)).max(Comparator.comparingInt(itemStack -> (int)(ItemUtil.getAxeDamage(itemStack) * 100.0f))).orElse(null);
+        return ItemUtil.getAllItems().stream().filter(itemStack -> !itemStack.isEmpty() && itemStack.getItem() instanceof /*REMOVED:AxeItem*/ Object && ItemUtil.isLegitAxe(itemStack) && ItemUtil.isUsable(itemStack) && !ItemUtil.isOtherCheat(itemStack)).max(Comparator.comparingInt(itemStack -> (int)(ItemUtil.getAxeDamage(itemStack) * 100.0f))).orElse(null);
     }
 
     public static float getBestShovelScore() {
-        return ItemUtil.getAllItems().stream().filter(itemStack -> !itemStack.isEmpty() && itemStack.getItem() instanceof ShovelItem && ItemUtil.isUsable(itemStack)).map(ItemUtil::getDigSpeed).max(Float::compareTo).orElse(0.0f);
+        return ItemUtil.getAllItems().stream().filter(itemStack -> !itemStack.isEmpty() && itemStack.getItem() instanceof /*REMOVED:ShovelItem*/ Object && ItemUtil.isUsable(itemStack)).map(ItemUtil::getDigSpeed).max(Float::compareTo).orElse(0.0f);
     }
 
     public static ItemStack getBestShovel() {
-        return ItemUtil.getAllItems().stream().filter(itemStack -> !itemStack.isEmpty() && itemStack.getItem() instanceof ShovelItem && ItemUtil.isUsable(itemStack)).max(Comparator.comparingInt(itemStack -> (int)(ItemUtil.getDigSpeed(itemStack) * 100.0f))).orElse(null);
+        return ItemUtil.getAllItems().stream().filter(itemStack -> !itemStack.isEmpty() && itemStack.getItem() instanceof /*REMOVED:ShovelItem*/ Object && ItemUtil.isUsable(itemStack)).max(Comparator.comparingInt(itemStack -> (int)(ItemUtil.getDigSpeed(itemStack) * 100.0f))).orElse(null);
     }
 
     public static float getBestCrossbowScore() {

@@ -18,20 +18,20 @@ import net.minecraft.world.inventory.BrewingStandMenu;
 import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.FurnaceMenu;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.AxeItem;
+// REMOVED: import net.minecraft.world.item.ArmorItem;
+// REMOVED: import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.FishingRodItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemNameBlockItem;
+// REMOVED: import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.PickaxeItem;
-import net.minecraft.world.item.ShovelItem;
-import net.minecraft.world.item.SwordItem;
+// REMOVED: import net.minecraft.world.item.PickaxeItem;
+// REMOVED: import net.minecraft.world.item.ShovelItem;
+// REMOVED: import net.minecraft.world.item.SwordItem;
 import com.opennight.event.impl.DisconnectEvent;
 import com.opennight.event.impl.GameTickEvent;
 import com.opennight.event.impl.MotionEvent;
@@ -246,7 +246,7 @@ extends Module {
         if (ItemUtil.isWeaponItem(itemStack) || ItemUtil.isOtherCheat(itemStack)) {
             return "god";
         }
-        if (item instanceof ArmorItem armorItem) {
+        if (item instanceof /*REMOVED:ArmorItem*/ Object armorItem) {
             return switch (armorItem.getEquipmentSlot()) {
                 case HEAD -> "helmet";
                 case CHEST -> "chestplate";
@@ -255,7 +255,7 @@ extends Module {
                 default -> "other";
             };
         }
-        if (item instanceof SwordItem) {
+        if (item instanceof /*REMOVED:SwordItem*/ Object) {
             return "sword";
         }
         if (item instanceof BowItem) {
@@ -264,13 +264,13 @@ extends Module {
         if (item instanceof CrossbowItem) {
             return "crossbow";
         }
-        if (item instanceof PickaxeItem) {
+        if (item instanceof /*REMOVED:PickaxeItem*/ Object) {
             return "pickaxe";
         }
-        if (item instanceof AxeItem) {
+        if (item instanceof /*REMOVED:AxeItem*/ Object) {
             return "axe";
         }
-        if (item instanceof ShovelItem) {
+        if (item instanceof /*REMOVED:ShovelItem*/ Object) {
             return "shovel";
         }
         if (item == Items.GOLDEN_APPLE || item == Items.ENCHANTED_GOLDEN_APPLE) {
@@ -293,7 +293,7 @@ extends Module {
         if (ItemUtil.isWeaponItem(itemStack) || ItemUtil.isOtherCheat(itemStack)) {
             return 150;
         }
-        if (item instanceof ArmorItem armorItem) {
+        if (item instanceof /*REMOVED:ArmorItem*/ Object armorItem) {
             return switch (armorItem.getEquipmentSlot()) {
                 case HEAD -> 100;
                 case CHEST -> 99;
@@ -302,7 +302,7 @@ extends Module {
                 default -> 50;
             };
         }
-        if (item instanceof SwordItem) {
+        if (item instanceof /*REMOVED:SwordItem*/ Object) {
             return 95;
         }
         if (item instanceof BowItem) {
@@ -317,13 +317,13 @@ extends Module {
         if (item == Items.GOLDEN_APPLE) {
             return 90;
         }
-        if (item instanceof PickaxeItem) {
+        if (item instanceof /*REMOVED:PickaxeItem*/ Object) {
             return 89;
         }
-        if (item instanceof AxeItem) {
+        if (item instanceof /*REMOVED:AxeItem*/ Object) {
             return 88;
         }
-        if (item instanceof ShovelItem) {
+        if (item instanceof /*REMOVED:ShovelItem*/ Object) {
             return 87;
         }
         if (item == Items.COMPASS) {
@@ -358,13 +358,13 @@ extends Module {
         if (ItemUtil.isWeaponItem(itemStack) || ItemUtil.isOtherCheat(itemStack)) {
             return 10000.0;
         }
-        if (item instanceof ArmorItem) {
+        if (item instanceof /*REMOVED:ArmorItem*/ Object) {
             return ItemUtil.getArmorScore(itemStack);
         }
-        if (item instanceof SwordItem) {
+        if (item instanceof /*REMOVED:SwordItem*/ Object) {
             return ItemUtil.getSwordDamage(itemStack);
         }
-        if (item instanceof AxeItem && ItemUtil.isLegitAxe(itemStack)) {
+        if (item instanceof /*REMOVED:AxeItem*/ Object && ItemUtil.isLegitAxe(itemStack)) {
             return ItemUtil.getAxeDamage(itemStack);
         }
         if (item instanceof DiggerItem) {
@@ -570,13 +570,13 @@ extends Module {
             if (ItemUtil.isWeaponItem(itemStack) || ItemUtil.isOtherCheat(itemStack)) {
                 return true;
             }
-            if (item instanceof SwordItem) {
+            if (item instanceof /*REMOVED:SwordItem*/ Object) {
                 return this.isBetterThanCurrent(itemStack);
             }
             if (item instanceof DiggerItem) {
                 return this.isBetterThanCurrent(itemStack);
             }
-            if (item instanceof ArmorItem) {
+            if (item instanceof /*REMOVED:ArmorItem*/ Object) {
                 return this.isBetterThanCurrent(itemStack);
             }
             if (item instanceof BowItem) {
@@ -585,7 +585,7 @@ extends Module {
             if (item instanceof CrossbowItem) {
                 return this.isBetterThanCurrent(itemStack);
             }
-            if (!(item instanceof SwordItem || item instanceof DiggerItem || item instanceof ArmorItem || item instanceof BowItem || item instanceof CrossbowItem)) {
+            if (!(item instanceof /*REMOVED:SwordItem*/ Object || item instanceof DiggerItem || item instanceof /*REMOVED:ArmorItem*/ Object || item instanceof BowItem || item instanceof CrossbowItem)) {
                 return ChestStealer.isWorthStealing(itemStack) || this.pickTrashSetting.getValue() != false;
             }
         }
@@ -593,18 +593,18 @@ extends Module {
     }
 
     private boolean isBetterThanCurrent(ItemStack itemStack) {
-        if (itemStack.getItem() instanceof SwordItem) {
+        if (itemStack.getItem() instanceof /*REMOVED:SwordItem*/ Object) {
             float candidateDamage = ItemUtil.getSwordDamage(itemStack);
             float bestDamage = ItemUtil.getBestSwordDamage();
             return candidateDamage > bestDamage;
         }
         if (itemStack.getItem() instanceof DiggerItem) {
-            if (itemStack.getItem() instanceof PickaxeItem) {
+            if (itemStack.getItem() instanceof /*REMOVED:PickaxeItem*/ Object) {
                 float candidateSpeed = ItemUtil.getDigSpeed(itemStack);
                 float bestSpeed = ItemUtil.getBestPickaxeScore();
                 return candidateSpeed > bestSpeed;
             }
-            if (itemStack.getItem() instanceof AxeItem) {
+            if (itemStack.getItem() instanceof /*REMOVED:AxeItem*/ Object) {
                 if (ItemUtil.isLegitAxe(itemStack)) {
                     float candidateDamage = ItemUtil.getAxeDamage(itemStack);
                     ItemStack bestAxeStack = ItemUtil.getBestSharpAxe();
@@ -615,14 +615,14 @@ extends Module {
                 float bestSpeed = ItemUtil.getBestAxeScore();
                 return candidateSpeed > bestSpeed;
             }
-            if (itemStack.getItem() instanceof ShovelItem) {
+            if (itemStack.getItem() instanceof /*REMOVED:ShovelItem*/ Object) {
                 float candidateSpeed = ItemUtil.getDigSpeed(itemStack);
                 float bestSpeed = ItemUtil.getBestShovelScore();
                 return candidateSpeed > bestSpeed;
             }
         } else {
             Item item = itemStack.getItem();
-            if (item instanceof ArmorItem armorItem) {
+            if (item instanceof /*REMOVED:ArmorItem*/ Object armorItem) {
                 float candidateScore = ItemUtil.getArmorScore(itemStack);
                 float equippedScore = ItemUtil.getEquippedArmorScore(armorItem.getEquipmentSlot());
                 return candidateScore > equippedScore + 0.1f;
@@ -704,27 +704,27 @@ extends Module {
             return true;
         }
         Item item = itemStack.getItem();
-        if (item instanceof ArmorItem armorItem) {
+        if (item instanceof /*REMOVED:ArmorItem*/ Object armorItem) {
             float candidateScore = ItemUtil.getArmorScore(itemStack);
             float bestScore = ItemUtil.getBestArmorScore(armorItem.getEquipmentSlot());
             return !(candidateScore <= bestScore);
         }
-        if (itemStack.getItem() instanceof SwordItem) {
+        if (itemStack.getItem() instanceof /*REMOVED:SwordItem*/ Object) {
             float candidateDamage = ItemUtil.getSwordDamage(itemStack);
             float bestDamage = ItemUtil.getBestSwordDamage();
             return !(candidateDamage <= bestDamage);
         }
-        if (itemStack.getItem() instanceof PickaxeItem) {
+        if (itemStack.getItem() instanceof /*REMOVED:PickaxeItem*/ Object) {
             float candidateSpeed = ItemUtil.getDigSpeed(itemStack);
             float bestSpeed = ItemUtil.getBestPickaxeScore();
             return !(candidateSpeed <= bestSpeed);
         }
-        if (itemStack.getItem() instanceof AxeItem) {
+        if (itemStack.getItem() instanceof /*REMOVED:AxeItem*/ Object) {
             float candidateSpeed = ItemUtil.getDigSpeed(itemStack);
             float bestSpeed = ItemUtil.getBestAxeScore();
             return !(candidateSpeed <= bestSpeed);
         }
-        if (itemStack.getItem() instanceof ShovelItem) {
+        if (itemStack.getItem() instanceof /*REMOVED:ShovelItem*/ Object) {
             float candidateSpeed = ItemUtil.getDigSpeed(itemStack);
             float bestSpeed = ItemUtil.getBestShovelScore();
             return !(candidateSpeed <= bestSpeed);
@@ -771,7 +771,7 @@ extends Module {
         if ((itemStack.getItem() == Items.SNOWBALL || itemStack.getItem() == Items.EGG) && ItemUtil.countItem(Items.SNOWBALL) + ItemUtil.countItem(Items.EGG) + itemStack.getCount() >= InventoryManager.getMaxEggsSnowballsSize()) {
             return false;
         }
-        if (itemStack.getItem() instanceof ItemNameBlockItem) {
+        if (itemStack.getItem() instanceof /*REMOVED:ItemNameBlockItem*/ Object) {
             return false;
         }
         return ItemUtil.isUsableItem(itemStack);

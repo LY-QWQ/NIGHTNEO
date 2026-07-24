@@ -1,6 +1,6 @@
 package com.opennight.render;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+// REMOVED: import com.mojang.blaze3d.platform.GlStateManager;
 import java.nio.ByteBuffer;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL30;

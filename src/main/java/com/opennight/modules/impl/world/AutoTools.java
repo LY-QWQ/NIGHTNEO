@@ -3,7 +3,7 @@ package com.opennight.modules.impl.world;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
+// REMOVED: import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
@@ -60,7 +60,7 @@ extends Module {
             if (mc.gameMode.isDestroying()) {
                 int bestSlot;
                 ItemStack heldStack;
-                if (this.checkSword.getValue() && (heldStack = mc.player.getMainHandItem()).getItem() instanceof SwordItem) {
+                if (this.checkSword.getValue() && (heldStack = mc.player.getMainHandItem()).getItem() instanceof /*REMOVED:SwordItem*/ Object) {
                     return;
                 }
                 BlockHitResult blockHit;
@@ -83,7 +83,7 @@ extends Module {
         for (int i = 0; i < 9; ++i) {
             int efficiencyLevel;
             ItemStack itemStack = mc.player.getInventory().getItem(i);
-            if (ItemUtil.isWeaponItem(itemStack) || itemStack.isEmpty() || blockState.isAir() || itemStack.getItem() instanceof SwordItem && !(block instanceof WebBlock)) continue;
+            if (ItemUtil.isWeaponItem(itemStack) || itemStack.isEmpty() || blockState.isAir() || itemStack.getItem() instanceof /*REMOVED:SwordItem*/ Object && !(block instanceof WebBlock)) continue;
             float destroySpeed = itemStack.getItem().getDestroySpeed(itemStack, blockState);
             if (destroySpeed > 1.0f && !(block instanceof DropExperienceBlock) && !(block instanceof RedStoneOreBlock) && (efficiencyLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY, itemStack)) > 0) {
                 destroySpeed += (float)(efficiencyLevel * efficiencyLevel + 1);

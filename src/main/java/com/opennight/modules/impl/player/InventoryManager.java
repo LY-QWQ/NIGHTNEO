@@ -30,18 +30,18 @@ import net.minecraft.world.inventory.BrewingStandMenu;
 import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.FurnaceMenu;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.AxeItem;
+// REMOVED: import net.minecraft.world.item.ArmorItem;
+// REMOVED: import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.FishingRodItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemNameBlockItem;
+// REMOVED: import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.PickaxeItem;
-import net.minecraft.world.item.ShovelItem;
-import net.minecraft.world.item.SwordItem;
+// REMOVED: import net.minecraft.world.item.PickaxeItem;
+// REMOVED: import net.minecraft.world.item.ShovelItem;
+// REMOVED: import net.minecraft.world.item.SwordItem;
 import org.apache.commons.lang3.tuple.Pair;
 import com.opennight.event.impl.MotionEvent;
 import com.opennight.event.impl.PacketEvent;
@@ -384,8 +384,8 @@ extends Module {
                 bestSword = bestSharpAxe;
             }
             if (bestSword != null) {
-                float currentDamage = currentSword.getItem() instanceof SwordItem ? ItemUtil.getSwordDamage(currentSword) : ItemUtil.getAxeDamage(currentSword);
-                float candidateDamage = bestSword.getItem() instanceof SwordItem ? ItemUtil.getSwordDamage(bestSword) : ItemUtil.getAxeDamage(bestSword);
+                float currentDamage = currentSword.getItem() instanceof /*REMOVED:SwordItem*/ Object ? ItemUtil.getSwordDamage(currentSword) : ItemUtil.getAxeDamage(currentSword);
+                float candidateDamage = bestSword.getItem() instanceof /*REMOVED:SwordItem*/ Object ? ItemUtil.getSwordDamage(bestSword) : ItemUtil.getAxeDamage(bestSword);
                 if (candidateDamage > currentDamage && this.swapToSlot(swordSlot, bestSword)) {
                     return true;
                 }
@@ -395,7 +395,7 @@ extends Module {
             int pickaxeSlot = this.pickaxeSlotSetting.getValue().intValue() - 1;
             ItemStack bestPickaxe = ItemUtil.getBestPickaxe();
             ItemStack currentPickaxe = mc.player.getInventory().items.get(pickaxeSlot);
-            if (bestPickaxe != null && bestPickaxe.getItem() instanceof PickaxeItem && (ItemUtil.getDigSpeed(bestPickaxe) > ItemUtil.getDigSpeed(currentPickaxe) || !(currentPickaxe.getItem() instanceof PickaxeItem)) && this.swapToSlot(pickaxeSlot, bestPickaxe)) {
+            if (bestPickaxe != null && bestPickaxe.getItem() instanceof /*REMOVED:PickaxeItem*/ Object && (ItemUtil.getDigSpeed(bestPickaxe) > ItemUtil.getDigSpeed(currentPickaxe) || !(currentPickaxe.getItem() instanceof /*REMOVED:PickaxeItem*/ Object)) && this.swapToSlot(pickaxeSlot, bestPickaxe)) {
                 return true;
             }
         }
@@ -479,7 +479,7 @@ extends Module {
         }
         for (int slot = 0; slot < mc.player.getInventory().armor.size(); ++slot) {
             ItemStack armorStack = mc.player.getInventory().armor.get(slot);
-            if (!(armorStack.getItem() instanceof ArmorItem armorItem)) continue;
+            if (!(armorStack.getItem() instanceof /*REMOVED:ArmorItem*/ Object armorItem)) continue;
             if (armorStack.isEmpty()
                     || !actionTimer.hasPassed(this.actionDelaySetting.getValue().intValue())
                     || !(ItemUtil.getBestArmorScore(armorItem.getEquipmentSlot()) > ItemUtil.getArmorScore(armorStack))) {
@@ -492,7 +492,7 @@ extends Module {
         }
         for (int slot = 0; slot < mc.player.getInventory().items.size(); ++slot) {
             ItemStack candidate = mc.player.getInventory().items.get(slot);
-            if (candidate.isEmpty() || !(candidate.getItem() instanceof ArmorItem armorItem)) continue;
+            if (candidate.isEmpty() || !(candidate.getItem() instanceof /*REMOVED:ArmorItem*/ Object armorItem)) continue;
             float candidateScore = ItemUtil.getArmorScore(candidate);
             boolean isBestArmor = ItemUtil.getBestArmorScore(armorItem.getEquipmentSlot()) == candidateScore;
             boolean betterThanEquipped = ItemUtil.getEquippedArmorScore(armorItem.getEquipmentSlot()) < candidateScore;
@@ -681,7 +681,7 @@ extends Module {
             return true;
         }
         Item item = itemStack.getItem();
-        if (item instanceof ArmorItem armorItem) {
+        if (item instanceof /*REMOVED:ArmorItem*/ Object armorItem) {
             float candidateScore = ItemUtil.getArmorScore(itemStack);
             if (ItemUtil.getEquippedArmorScore(armorItem.getEquipmentSlot()) >= candidateScore) {
                 return false;
@@ -689,16 +689,16 @@ extends Module {
             float bestScore = ItemUtil.getBestArmorScore(armorItem.getEquipmentSlot());
             return !(candidateScore < bestScore);
         }
-        if (itemStack.getItem() instanceof SwordItem) {
+        if (itemStack.getItem() instanceof /*REMOVED:SwordItem*/ Object) {
             return ItemUtil.getBestSword() == itemStack;
         }
-        if (itemStack.getItem() instanceof PickaxeItem) {
+        if (itemStack.getItem() instanceof /*REMOVED:PickaxeItem*/ Object) {
             return ItemUtil.getBestPickaxe() == itemStack;
         }
-        if (itemStack.getItem() instanceof AxeItem && !ItemUtil.isLegitAxe(itemStack)) {
+        if (itemStack.getItem() instanceof /*REMOVED:AxeItem*/ Object && !ItemUtil.isLegitAxe(itemStack)) {
             return ItemUtil.getBestAxe() == itemStack;
         }
-        if (itemStack.getItem() instanceof ShovelItem) {
+        if (itemStack.getItem() instanceof /*REMOVED:ShovelItem*/ Object) {
             return ItemUtil.getBestShovel() == itemStack;
         }
         if (itemStack.getItem() instanceof CrossbowItem) {
@@ -722,7 +722,7 @@ extends Module {
         if (itemStack.getItem() instanceof FishingRodItem && ItemUtil.countItem(Items.FISHING_ROD) > 1) {
             return false;
         }
-        if (itemStack.getItem() instanceof ItemNameBlockItem) {
+        if (itemStack.getItem() instanceof /*REMOVED:ItemNameBlockItem*/ Object) {
             return false;
         }
         return ItemUtil.isUsableItem(itemStack);

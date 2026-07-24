@@ -1,7 +1,7 @@
 package com.opennight.render;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.BufferUploader;
+// REMOVED: import com.mojang.blaze3d.vertex.BufferUploader;
 import java.lang.reflect.Field;
 import java.util.function.Consumer;
 import net.minecraft.client.gui.GuiGraphics;

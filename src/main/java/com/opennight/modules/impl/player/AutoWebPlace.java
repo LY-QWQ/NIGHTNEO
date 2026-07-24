@@ -17,7 +17,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.SwordItem;
+// REMOVED: import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -1370,7 +1370,7 @@ public class AutoWebPlace extends Module {
     private int findSwordSlot() {
         for (int slot = 0; slot < 9; slot++) {
             ItemStack stack = mc.player.getInventory().getItem(slot);
-            if (!stack.isEmpty() && stack.getItem() instanceof SwordItem) {
+            if (!stack.isEmpty() && stack.getItem() instanceof /*REMOVED:SwordItem*/ Object) {
                 return slot;
             }
         }

@@ -4,7 +4,7 @@ import java.util.List;
 import lombok.Generated;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.ItemNameBlockItem;
+// REMOVED: import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.AirBlock;
@@ -103,7 +103,7 @@ extends ClientBase {
             if (displayName.contains("Click") || displayName.contains("点击")) {
                 return false;
             }
-            if (itemStack.getItem() instanceof ItemNameBlockItem) {
+            if (itemStack.getItem() instanceof /*REMOVED:ItemNameBlockItem*/ Object) {
                 return false;
             }
             Block block = ((BlockItem)itemStack.getItem()).getBlock();

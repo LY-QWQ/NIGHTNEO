@@ -10,7 +10,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ArmorItem;
+// REMOVED: import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ClipContext;
@@ -84,7 +84,7 @@ extends ClientBase {
         int totalDefense = 0;
         for (ItemStack itemStack : livingEntity.getArmorSlots()) {
             Item item = itemStack.getItem();
-            if (!(item instanceof ArmorItem armorItem)) continue;
+            if (!(item instanceof /*REMOVED:ArmorItem*/ Object armorItem)) continue;
             totalDefense += armorItem.getDefense();
         }
         return totalDefense;

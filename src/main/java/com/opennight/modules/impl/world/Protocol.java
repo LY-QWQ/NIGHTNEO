@@ -1,7 +1,7 @@
 package com.opennight.modules.impl.world;
 
 import java.nio.file.Path;
-import net.minecraft.network.protocol.game.ClientboundCustomPayloadPacket;
+// REMOVED: import net.minecraft.network.protocol.game.ClientboundCustomPayloadPacket;
 import com.opennight.NightNeo;
 import com.opennight.event.EventTarget;
 import com.opennight.event.impl.PacketEvent;

@@ -16,7 +16,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import org.antlr.v4.runtime.misc.OrderedHashSet;
+// REMOVED: import org.antlr.v4.runtime.misc.OrderedHashSet;
 import com.opennight.ClientBase;
 import com.opennight.utils.math.MathUtil;
 import com.opennight.utils.rotation.Rotation;

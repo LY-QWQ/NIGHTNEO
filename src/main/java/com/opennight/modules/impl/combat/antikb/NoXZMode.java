@@ -6,7 +6,7 @@ import com.opennight.NightNeo;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientboundAnimatePacket;
 import net.minecraft.network.protocol.game.ClientboundContainerClosePacket;
-import net.minecraft.network.protocol.game.ClientboundDisconnectPacket;
+// REMOVED: import net.minecraft.network.protocol.game.ClientboundDisconnectPacket;
 import net.minecraft.network.protocol.game.ClientboundHurtAnimationPacket;
 import net.minecraft.network.protocol.game.ClientboundPlayerChatPacket;
 import net.minecraft.network.protocol.game.ClientboundPlayerCombatKillPacket;
