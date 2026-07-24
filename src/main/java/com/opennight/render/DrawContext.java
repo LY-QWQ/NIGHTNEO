@@ -165,7 +165,7 @@ public class DrawContext {
         Matrix4f pose = this.poseStack.last().pose();
         float[] color = DrawContext.colorToFloats(paint.getColor());
         Tesselator tesselator = Tesselator.getInstance();
-        BufferBuilder bufferBuilder = tesselator.getBuilder();
+        BufferBuilder bufferBuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         if (paint.getGradCoords() != null) {
             boolean vertical;
@@ -267,7 +267,7 @@ public class DrawContext {
         Matrix4f pose = this.poseStack.last().pose();
         float[] color = DrawContext.colorToFloats(paint.getColor());
         Tesselator tesselator = Tesselator.getInstance();
-        BufferBuilder bufferBuilder = tesselator.getBuilder();
+        BufferBuilder bufferBuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         bufferBuilder.vertex(pose, x1 + normalX, y1 + normalY, 0.0f).color(color[0], color[1], color[2], color[3]).endVertex();
         bufferBuilder.vertex(pose, x1 - normalX, y1 - normalY, 0.0f).color(color[0], color[1], color[2], color[3]).endVertex();
@@ -314,7 +314,7 @@ public class DrawContext {
         float[] color = DrawContext.colorToFloats(paint.getColor());
         segments = Math.max(3, segments);
         Tesselator tesselator = Tesselator.getInstance();
-        BufferBuilder bufferBuilder = tesselator.getBuilder();
+        BufferBuilder bufferBuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         if (paint.getCapStyle() == Paint.StrokeCap.STROKE) {
             float strokeWidth = Math.max(0.5f, paint.getStrokeWidth());
             float innerRadius = radius - strokeWidth * 0.5f;
@@ -472,7 +472,7 @@ public class DrawContext {
         Matrix4f pose = this.poseStack.last().pose();
         float[] color = DrawContext.colorToFloats(paint.getColor());
         Tesselator tesselator = Tesselator.getInstance();
-        BufferBuilder bufferBuilder = tesselator.getBuilder();
+        BufferBuilder bufferBuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         bufferBuilder.begin(VertexFormat.Mode.TRIANGLE_FAN, DefaultVertexFormat.POSITION_COLOR);
         for (float[] vertex : polygon) {
             bufferBuilder.vertex(pose, vertex[0], vertex[1], 0.0f).color(color[0], color[1], color[2], color[3]).endVertex();
@@ -513,7 +513,7 @@ public class DrawContext {
         float normalY = dx / length * strokeWidth * 0.5f;
         this.setupColorShader();
         Tesselator tesselator = Tesselator.getInstance();
-        BufferBuilder bufferBuilder = tesselator.getBuilder();
+        BufferBuilder bufferBuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         bufferBuilder.vertex(pose, x1 + normalX, y1 + normalY, 0.0f).color(color[0], color[1], color[2], color[3]).endVertex();
         bufferBuilder.vertex(pose, x1 - normalX, y1 - normalY, 0.0f).color(color[0], color[1], color[2], color[3]).endVertex();
@@ -543,7 +543,7 @@ public class DrawContext {
         float dstWidth = dstRect.getWidth();
         float dstHeight = dstRect.getHeight();
         Tesselator tesselator = Tesselator.getInstance();
-        BufferBuilder bufferBuilder = tesselator.getBuilder();
+        BufferBuilder bufferBuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
         bufferBuilder.vertex(pose, dstX, dstY, 0.0f).uv(u1, v1).color(color[0], color[1], color[2], color[3]).endVertex();
         bufferBuilder.vertex(pose, dstX, dstY + dstHeight, 0.0f).uv(u1, v2).color(color[0], color[1], color[2], color[3]).endVertex();

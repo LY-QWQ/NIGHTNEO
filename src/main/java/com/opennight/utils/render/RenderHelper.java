@@ -28,7 +28,7 @@ public final class RenderHelper {
         float uMax = (float)renderTarget.viewWidth / (float)renderTarget.width;
         float vMax = (float)renderTarget.viewHeight / (float)renderTarget.height;
         Tesselator tesselator = RenderSystem.renderThreadTesselator();
-        BufferBuilder bufferBuilder = tesselator.getBuilder();
+        BufferBuilder bufferBuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
         bufferBuilder.vertex(matrix4f, 0.0f, (float)height, 0.0f).uv(0.0f, 0.0f).color(255, 255, 255, 255).endVertex();
         bufferBuilder.vertex(matrix4f, (float)width, (float)height, 0.0f).uv(uMax, 0.0f).color(255, 255, 255, 255).endVertex();
@@ -50,7 +50,7 @@ public final class RenderHelper {
         float uMax = (float)renderTarget.viewWidth / (float)renderTarget.width;
         float vMax = (float)renderTarget.viewHeight / (float)renderTarget.height;
         Tesselator tesselator = RenderSystem.renderThreadTesselator();
-        BufferBuilder bufferBuilder = tesselator.getBuilder();
+        BufferBuilder bufferBuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
         bufferBuilder.vertex(matrix4f, 0.0f, heightF, 0.0f).uv(0.0f, 0.0f).color(255, 255, 255, 255).endVertex();
         bufferBuilder.vertex(matrix4f, widthF, heightF, 0.0f).uv(uMax, 0.0f).color(255, 255, 255, 255).endVertex();

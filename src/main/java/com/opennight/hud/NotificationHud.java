@@ -237,7 +237,7 @@ public class NotificationHud extends HudElement {
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         Matrix4f pose = drawContext.getPoseStack().last().pose();
-        BufferBuilder bufferBuilder = Tesselator.getInstance().getBuilder();
+        BufferBuilder bufferBuilder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
         bufferBuilder.vertex(pose, x, y, 0.0f).uv(0.0f, 0.0f).color(255, 255, 255, iconAlpha).endVertex();
         bufferBuilder.vertex(pose, x, y + size, 0.0f).uv(0.0f, 1.0f).color(255, 255, 255, iconAlpha).endVertex();

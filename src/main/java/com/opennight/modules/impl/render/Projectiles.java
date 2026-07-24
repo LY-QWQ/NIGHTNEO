@@ -318,7 +318,7 @@ public class Projectiles extends Module {
 
     private void drawLine(PoseStack poseStack, List<Vec3> path) {
         Matrix4f matrix4f = poseStack.last().pose();
-        BufferBuilder builder = Tesselator.getInstance().getBuilder();
+        BufferBuilder builder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         RenderSystem.setShader(GameRenderer::getPositionShader);
         builder.begin(VertexFormat.Mode.DEBUG_LINE_STRIP, DefaultVertexFormat.POSITION);
         RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
@@ -360,7 +360,7 @@ public class Projectiles extends Module {
 
     private void drawFacePlane(PoseStack poseStack, Vec3 center, Direction direction, float radius, Color color) {
         Matrix4f matrix4f = poseStack.last().pose();
-        BufferBuilder builder = Tesselator.getInstance().getBuilder();
+        BufferBuilder builder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         float r = color.getRed() / 255.0f;
         float g = color.getGreen() / 255.0f;
         float b = color.getBlue() / 255.0f;
@@ -478,7 +478,7 @@ public class Projectiles extends Module {
         ClientLevel level = mc.level;
         Color color = provider.getColor(entity);
         if (color == null) color = new Color(255, 255, 255);
-        BufferBuilder builder = Tesselator.getInstance().getBuilder();
+        BufferBuilder builder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         builder.begin(VertexFormat.Mode.DEBUG_LINE_STRIP, DefaultVertexFormat.POSITION_COLOR);
         double x = entity.getX(), y = entity.getY(), z = entity.getZ();
         double dx = entity.getDeltaMovement().x;

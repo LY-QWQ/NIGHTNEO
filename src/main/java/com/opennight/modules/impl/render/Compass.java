@@ -56,7 +56,7 @@ extends Module {
         if (mc.player == null) {
             return false;
         }
-        for (ItemStack itemStack : mc.player.getInventory().getItems()) {
+        for (ItemStack itemStack : mc.player.getInventory().getNonEquipmentItems()) {
             if (itemStack.getItem() != Items.COMPASS) continue;
             return true;
         }

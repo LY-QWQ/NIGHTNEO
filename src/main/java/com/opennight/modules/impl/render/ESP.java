@@ -161,7 +161,7 @@ public class ESP extends Module {
         RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
         RenderSystem.setShader(GameRenderer::getPositionColorShader);
         Tesselator tess = Tesselator.getInstance();
-        BufferBuilder builder = tess.getBuilder();
+        BufferBuilder builder = tess.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         builder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         for (Map.Entry<Entity, Pair<Vector4d, Boolean>> entry : this.entityBoxPositions.entrySet()) {
             Vector4d v = entry.getValue().first;

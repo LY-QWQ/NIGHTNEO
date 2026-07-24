@@ -61,7 +61,7 @@ extends ClientBase {
         }
 
         public void bind() {
-            com.mojang.blaze3d.systems.RenderSystem.setShaderTexture(0, this.resourceLocation.get());
+            com.mojang.blaze3d.systems.RenderSystem.setShaderTexture(0, ResourceLocationWrapper.get(this.resourceLocation));
         }
     }
 
@@ -80,7 +80,7 @@ extends ClientBase {
         RenderHelper.resetShaderColor();
         Matrix4f matrix4f = poseStack.last().pose();
         RenderSystem.setShader(GameRenderer::getPositionColorShader);
-        BufferBuilder bufferBuilder = Tesselator.getInstance().getBuilder();
+        BufferBuilder bufferBuilder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         bufferBuilder.vertex(matrix4f, x, y, zLevel).color(colorTop).endVertex();
         bufferBuilder.vertex(matrix4f, x, y + height, zLevel).color(colorBottom).endVertex();
@@ -96,7 +96,7 @@ extends ClientBase {
         RenderHelper.resetShaderColor();
         Matrix4f matrix4f = poseStack.last().pose();
         RenderSystem.setShader(GameRenderer::getPositionColorShader);
-        BufferBuilder bufferBuilder = Tesselator.getInstance().getBuilder();
+        BufferBuilder bufferBuilder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         bufferBuilder.vertex(matrix4f, x, y, zLevel).color(colorLeft).endVertex();
         bufferBuilder.vertex(matrix4f, x, y + height, zLevel).color(colorLeft).endVertex();
@@ -118,7 +118,7 @@ extends ClientBase {
         float red = (float)(color >> 16 & 0xFF) / 255.0f;
         float green = (float)(color >> 8 & 0xFF) / 255.0f;
         float blue = (float)(color & 0xFF) / 255.0f;
-        BufferBuilder bufferBuilder = Tesselator.getInstance().getBuilder();
+        BufferBuilder bufferBuilder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         bufferBuilder.vertex(matrix4f, centerX, centerY, 0.0f).color(red, green, blue, alpha).endVertex();
         bufferBuilder.vertex(matrix4f, centerX - size / widthRatio, centerY + size, 0.0f).color(red, green, blue, alpha).endVertex();
@@ -154,7 +154,7 @@ extends ClientBase {
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         Tesselator tesselator = Tesselator.getInstance();
-        BufferBuilder bufferBuilder = tesselator.getBuilder();
+        BufferBuilder bufferBuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
         bufferBuilder.vertex(matrix4f, x, y, 0.0f).uv(0.0f, 0.0f).color(color).endVertex();
         bufferBuilder.vertex(matrix4f, x, y + height, 0.0f).uv(0.0f, 1.0f).color(color).endVertex();
@@ -260,7 +260,7 @@ extends ClientBase {
             GL20.glUniform1f(blurShader.getUniformLocation("BlurRadius"), blurRadius);
             GL20.glUniform1f(blurShader.getUniformLocation("Opacity"), opacity);
             Tesselator tesselator = Tesselator.getInstance();
-            BufferBuilder bufferBuilder = tesselator.getBuilder();
+            BufferBuilder bufferBuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
             bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
             bufferBuilder.vertex(matrix4f, x, y, 0.0f).uv(0.0f, 1.0f).color(blendColor).endVertex();
             bufferBuilder.vertex(matrix4f, x, y + height, 0.0f).uv(0.0f, 0.0f).color(blendColor).endVertex();
@@ -320,7 +320,7 @@ extends ClientBase {
         float v0 = (float)v / (float)textureHeight;
         float v1 = (float)(v + regionHeight) / (float)textureHeight;
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        BufferBuilder bufferBuilder = Tesselator.getInstance().getBuilder();
+        BufferBuilder bufferBuilder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         Matrix4f matrix4f = poseStack.last().pose();
         bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
         bufferBuilder.vertex(matrix4f, (float)x, (float)(y + height), 0.0f).uv(u0, v1).endVertex();
@@ -342,7 +342,7 @@ extends ClientBase {
     public static void drawFilledRect(PoseStack poseStack, float x, float y, float width, float height) {
         Matrix4f matrix4f = poseStack.last().pose();
         RenderSystem.setShader(GameRenderer::getPositionShader);
-        BufferBuilder bufferBuilder = Tesselator.getInstance().getBuilder();
+        BufferBuilder bufferBuilder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION);
         bufferBuilder.vertex(matrix4f, x, y, zLevel).endVertex();
         bufferBuilder.vertex(matrix4f, x, y + height, zLevel).endVertex();
@@ -353,7 +353,7 @@ extends ClientBase {
 
     public static void drawSolidBox(AABB aABB, PoseStack poseStack) {
         Matrix4f matrix4f = poseStack.last().pose();
-        BufferBuilder bufferBuilder = Tesselator.getInstance().getBuilder();
+        BufferBuilder bufferBuilder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         RenderSystem.setShader(GameRenderer::getPositionShader);
         bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION);
         bufferBuilder.vertex(matrix4f, (float)aABB.minX, (float)aABB.minY, (float)aABB.minZ).endVertex();
@@ -385,7 +385,7 @@ extends ClientBase {
 
     public static void drawOutlineBox(AABB aABB, PoseStack poseStack) {
         Matrix4f matrix4f = poseStack.last().pose();
-        BufferBuilder bufferBuilder = Tesselator.getInstance().getBuilder();
+        BufferBuilder bufferBuilder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         RenderSystem.setShader(GameRenderer::getPositionShader);
         bufferBuilder.begin(VertexFormat.Mode.DEBUG_LINES, DefaultVertexFormat.POSITION);
         bufferBuilder.vertex(matrix4f, (float)aABB.minX, (float)aABB.minY, (float)aABB.minZ).endVertex();
@@ -466,7 +466,7 @@ extends ClientBase {
         RenderSystem.disableCull();
         Matrix4f matrix4f = poseStack.last().pose();
         Tesselator tesselator = Tesselator.getInstance();
-        BufferBuilder bufferBuilder = tesselator.getBuilder();
+        BufferBuilder bufferBuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         bufferBuilder.begin(VertexFormat.Mode.TRIANGLE_STRIP, DefaultVertexFormat.POSITION_COLOR);
         int segments = 60;
         for (int i = 0; i <= segments; ++i) {
@@ -487,7 +487,7 @@ extends ClientBase {
         if (renderedBuffer != null) {
             BufferUploader.drawWithShader(renderedBuffer);
         }
-        bufferBuilder = Tesselator.getInstance().getBuilder();
+        bufferBuilder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         bufferBuilder.begin(VertexFormat.Mode.LINE_STRIP, DefaultVertexFormat.POSITION_COLOR);
         RenderSystem.lineWidth(1.0f);
         for (int i = 0; i <= segments; ++i) {
@@ -512,7 +512,7 @@ extends ClientBase {
     public static void drawColoredBox(AABB aABB, PoseStack poseStack, Color topColor, Color bottomColor) {
         Matrix4f matrix4f = poseStack.last().pose();
         Tesselator tesselator = Tesselator.getInstance();
-        BufferBuilder bufferBuilder = tesselator.getBuilder();
+        BufferBuilder bufferBuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         RenderSystem.setShader(GameRenderer::getPositionColorShader);
@@ -556,7 +556,7 @@ extends ClientBase {
     public static void drawFilledColoredBox(AABB aABB, PoseStack poseStack, Color topColor, Color bottomColor) {
         Matrix4f matrix4f = poseStack.last().pose();
         Tesselator tesselator = Tesselator.getInstance();
-        BufferBuilder bufferBuilder = tesselator.getBuilder();
+        BufferBuilder bufferBuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         RenderSystem.setShader(GameRenderer::getPositionColorShader);
@@ -660,7 +660,7 @@ extends ClientBase {
             RenderSystem.setShaderTexture(0, textureId);
         }
         Tesselator tesselator = Tesselator.getInstance();
-        BufferBuilder bufferBuilder = tesselator.getBuilder();
+        BufferBuilder bufferBuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
         bufferBuilder.vertex(matrix4f, x, y, 0.0f).uv(0.0f, 0.0f).endVertex();
         bufferBuilder.vertex(matrix4f, x, y + height, 0.0f).uv(0.0f, 1.0f).endVertex();

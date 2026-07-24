@@ -217,7 +217,7 @@ extends HudElement {
 
     private List<ItemStack> getPlayerItems(Player player) {
         Stream<ItemStack> stream = player == mc.player
-                ? Stream.concat(player.getInventory().getItems().stream(), Stream.concat(player.getInventory().armor.stream(), player.getInventory().offhand.stream()))
+                ? Stream.concat(player.getInventory().getNonEquipmentItems().stream(), Stream.concat(player.getInventory().armor.stream(), player.getInventory().offhand.stream()))
                 : Stream.concat(player.getInventory().armor.stream(), Stream.of(player.getMainHandItem(), player.getOffhandItem()));
         return stream.filter(this::isCheatItem).collect(Collectors.toList());
     }

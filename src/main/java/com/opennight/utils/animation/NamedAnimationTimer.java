@@ -18,15 +18,15 @@ extends AnimationTimer {
         if (target == (double)this.getValueF()) {
             return;
         }
-        this.setDebug(this.getBuilder().isDebug());
+        this.setDebug(this.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR).isDebug());
         if (this.isAnimating() && (target == this.getFromValue() || target == this.getToValue() || target == (double)this.getValueF())) {
             if (this.isDebug()) {
                 System.out.println("Animating " + this.name + " cancelled due to valueTo equals fromValue");
             }
             return;
         }
-        this.setEasing(this.getBuilder().getEasing());
-        this.setDuration(this.getBuilder().getDuration() * 1000.0);
+        this.setEasing(this.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR).getEasing());
+        this.setDuration(this.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR).getDuration() * 1000.0);
         this.setStartTime(System.currentTimeMillis());
         this.setFromValue(this.getValueF());
         this.setToValue(target);

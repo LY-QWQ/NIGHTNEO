@@ -61,8 +61,8 @@ extends ClientBase {
         if (itemStack == null || mc.player == null) {
             return -1;
         }
-        for (int i = 0; i < mc.player.getInventory().getItems().size(); ++i) {
-            if (mc.player.getInventory().getItems().get(i) != itemStack) continue;
+        for (int i = 0; i < mc.player.getInventory().getContents().size(); ++i) {
+            if (mc.player.getInventory().getContents().get(i) != itemStack) continue;
             return i;
         }
         return -1;
@@ -72,8 +72,8 @@ extends ClientBase {
         if (mc.player == null) {
             return -1;
         }
-        for (int i = 0; i < mc.player.getInventory().getItems().size(); ++i) {
-            ItemStack itemStack = mc.player.getInventory().getItems().get(i);
+        for (int i = 0; i < mc.player.getInventory().getContents().size(); ++i) {
+            ItemStack itemStack = mc.player.getInventory().getContents().get(i);
             if (itemStack.getItem() != item) continue;
             return i;
         }
@@ -119,7 +119,7 @@ extends ClientBase {
         if (mc.player == null) {
             return items;
         }
-        items.addAll(mc.player.getInventory().getItems());
+        items.addAll(mc.player.getInventory().getContents());
         items.addAll(mc.player.getInventory().armor);
         return items;
     }
@@ -328,12 +328,12 @@ extends ClientBase {
 
     public static double getAttackDamage(ItemStack itemStack) {
         double damage = 0.0;
-        Multimap<Attribute, AttributeModifier> modifiers = itemStack.getAttributeModifiers(EquipmentSlot.MAINHAND);
+        Multimap<Attribute, AttributeModifier> modifiers = itemStack.getAttributeModifiers();
         for (Attribute attribute : modifiers.keySet()) {
             if (!attribute.getDescriptionId().equals("attribute.name.generic.attack_damage")) continue;
             Iterator<AttributeModifier> iterator = modifiers.get(attribute).iterator();
             if (!iterator.hasNext()) break;
-            damage += iterator.next().getAmount();
+            damage += iterator.next().amount();
             break;
         }
         if (itemStack.hasFoil()) {
@@ -357,11 +357,11 @@ extends ClientBase {
     }
 
     public static int countFood() {
-        return ItemUtil.getAllItems().stream().filter(itemStack -> !itemStack.isEmpty() && itemStack.getItem().isEdible() && itemStack.getItem() != Items.GOLDEN_APPLE && itemStack.getItem() != Items.ENCHANTED_GOLDEN_APPLE && ItemUtil.isUsable(itemStack)).mapToInt(ItemStack::getCount).sum();
+        return ItemUtil.getAllItems().stream().filter(itemStack -> !itemStack.isEmpty() && itemStack.getItem().getFoodProperties() != null && itemStack.getItem() != Items.GOLDEN_APPLE && itemStack.getItem() != Items.ENCHANTED_GOLDEN_APPLE && ItemUtil.isUsable(itemStack)).mapToInt(ItemStack::getCount).sum();
     }
 
     public static ItemStack getBestFoodStack() {
-        return ItemUtil.getAllItems().stream().filter(itemStack -> !itemStack.isEmpty() && itemStack.getItem().isEdible() && itemStack.getItem() != Items.GOLDEN_APPLE && itemStack.getItem() != Items.ENCHANTED_GOLDEN_APPLE && ItemUtil.isUsable(itemStack)).min(Comparator.comparingInt(ItemStack::getCount)).orElse(null);
+        return ItemUtil.getAllItems().stream().filter(itemStack -> !itemStack.isEmpty() && itemStack.getItem().getFoodProperties() != null && itemStack.getItem() != Items.GOLDEN_APPLE && itemStack.getItem() != Items.ENCHANTED_GOLDEN_APPLE && ItemUtil.isUsable(itemStack)).min(Comparator.comparingInt(ItemStack::getCount)).orElse(null);
     }
 
     public static boolean isLegitAxe(ItemStack itemStack) {
@@ -383,7 +383,7 @@ extends ClientBase {
         if (displayName.contains("一刀")) {
             return true;
         }
-        if (itemStack.getTag() != null && itemStack.getTag().toString().contains("一刀")) {
+        if (itemStack.getComponents() != null && itemStack.getComponents().toString().contains("一刀")) {
             return true;
         }
         if (itemStack.getItem() == Items.GOLDEN_AXE) {

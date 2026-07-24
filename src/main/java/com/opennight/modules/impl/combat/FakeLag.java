@@ -185,7 +185,7 @@ public class FakeLag extends Module {
 
         Matrix4f matrix = poseStack.last().pose();
         org.joml.Matrix3f normalMat = poseStack.last().normal();
-        BufferBuilder builder = Tesselator.getInstance().getBuilder();
+        BufferBuilder builder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         builder.begin(VertexFormat.Mode.LINES, DefaultVertexFormat.POSITION_COLOR_NORMAL);
 
         float r = 0.0f, g = 0.9f, b = 1.0f, a = 0.8f;

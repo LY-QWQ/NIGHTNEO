@@ -56,7 +56,7 @@ public class StencilHelper {
         GL13.glActiveTexture(33984);
         GlStateManager._bindTexture(content.getColorTextureId());
         Tesselator tesselator = Tesselator.getInstance();
-        BufferBuilder bufferBuilder = tesselator.getBuilder();
+        BufferBuilder bufferBuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
         bufferBuilder.vertex(pose, 0.0f, 0.0f, 0.0f).uv(0.0f, 1.0f).endVertex();
         bufferBuilder.vertex(pose, 0.0f, (float)ClientBase.mc.getWindow().getGuiScaledHeight(), 0.0f).uv(0.0f, 0.0f).endVertex();

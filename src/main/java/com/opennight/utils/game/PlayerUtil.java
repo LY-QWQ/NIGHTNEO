@@ -82,7 +82,7 @@ extends ClientBase {
 
     public static int getArmorPoints(LivingEntity livingEntity) {
         int totalDefense = 0;
-        for (ItemStack itemStack : livingEntity.getArmorAndBodySlots()) {
+        for (ItemStack itemStack : livingEntity.getArmorSlots()) {
             Item item = itemStack.getItem();
             if (!(item instanceof /*REMOVED:item_class*/ Void)) continue;
             totalDefense += armorItem.getDefense();

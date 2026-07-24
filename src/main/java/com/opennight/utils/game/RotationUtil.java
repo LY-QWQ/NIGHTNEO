@@ -271,7 +271,7 @@ extends ClientBase {
         double maxY = aABB.maxY;
         double maxZ = aABB.maxZ;
         double step = 0.1;
-        OrderedHashSet<Vec3> samplePoints = new OrderedHashSet<>();
+        java.util.LinkedHashSet<Vec3> samplePoints = new java.util.LinkedHashSet<>();
         samplePoints.add(new Vec3(minX + maxX / 2.0, minY + maxY / 2.0, minZ + maxZ / 2.0));
         samplePoints.add(RotationUtil.closestPoint(eyePos, aABB));
         for (sampleAxis1 = minX; sampleAxis1 <= maxX; sampleAxis1 += step) {
@@ -370,12 +370,12 @@ extends ClientBase {
 
     public static HitResult performRaycast(Rotation rotation) {
         AABB expandedBB;
-        double pickRange = mc.gameMode.getBlockReachDistance();
+        double pickRange = 4.5;
         HitResult hitResult = RayTraceUtil.rayTrace(pickRange, 1.0f, false, rotation);
         Vec3 eyePos = mc.player.getEyePosition(1.0f);
         boolean checkClampedRange = false;
         double maxRangeSqr = pickRange;
-        if (mc.gameMode.getBlockReachDistance() > 5.0) {
+        if (4.5 > 5.0) {
             pickRange = maxRangeSqr = 6.0;
         } else if (pickRange > 3.0) {
             checkClampedRange = true;

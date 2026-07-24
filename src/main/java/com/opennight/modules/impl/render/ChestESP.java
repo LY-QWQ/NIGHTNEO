@@ -110,7 +110,7 @@ extends Module {
         RenderSystem.defaultBlendFunc();
         RenderSystem.setShader(GameRenderer::getPositionShader);
         Tesselator tesselator = RenderSystem.renderThreadTesselator();
-        BufferBuilder bufferBuilder = tesselator.getBuilder();
+        BufferBuilder bufferBuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         for (AABB aABB : this.renderBoundingBoxes) {
             BlockPos blockPos = BlockPos.containing(aABB.minX, aABB.minY, aABB.minZ);
             float[] fArray = this.openedChestPositions.contains(blockPos) ? openedChestColor : chestColor;

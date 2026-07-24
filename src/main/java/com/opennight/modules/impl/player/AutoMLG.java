@@ -141,7 +141,7 @@ extends Module {
                     return;
                 }
             }
-            if (mc.player.getInventory().getItems().get(this.waterBucketSlot.intValue()).getItem() == Items.WATER_BUCKET) {
+            if (mc.player.getInventory().getNonEquipmentItems().get(this.waterBucketSlot.intValue()).getItem() == Items.WATER_BUCKET) {
                 this.recoveryActive = false;
                 this.waterBucketSlot = null;
                 this.placedWaterPos = null;

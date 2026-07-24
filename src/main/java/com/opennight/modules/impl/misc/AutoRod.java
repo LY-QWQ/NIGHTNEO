@@ -118,7 +118,7 @@ extends Module {
         if (mc.player == null) {
             return -1;
         }
-        int hotbarSize = Math.min(9, mc.player.getInventory().getItems().size());
+        int hotbarSize = Math.min(9, mc.player.getInventory().getNonEquipmentItems().size());
         for (int i = 0; i < hotbarSize; ++i) {
             if (mc.player.getInventory().getItem(i).getItem() != item) continue;
             return i;
@@ -130,7 +130,7 @@ extends Module {
         if (mc.player == null) {
             return -1;
         }
-        int hotbarSize = Math.min(9, mc.player.getInventory().getItems().size());
+        int hotbarSize = Math.min(9, mc.player.getInventory().getNonEquipmentItems().size());
         for (int i = 0; i < hotbarSize; ++i) {
             if (!this.isThrowable(mc.player.getInventory().getItem(i).getItem())) continue;
             return i;

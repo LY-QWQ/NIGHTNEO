@@ -411,7 +411,7 @@ public class KillAura extends Module {
                     {-size, -size, 0.0f, 1.0f}
             };
             Matrix4f matrix = poseStack.last().pose();
-            BufferBuilder bufferBuilder = Tesselator.getInstance().getBuilder();
+            BufferBuilder bufferBuilder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
             bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
             for (int i = 0; i < corners.length; i++) {
                 int color = colors[i];

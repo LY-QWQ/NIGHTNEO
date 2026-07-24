@@ -32,6 +32,10 @@ public class NightNeo {
     public static final EventBus eventBus = new EventBus();
     public static final ModuleManager moduleManager = new ModuleManager();
     public static NightNeo instance;
+    public static boolean isMCPMapped = false;
+
+    public static boolean isReady() { return instance != null; }
+    public EventBus getEventBus() { return eventBus; }
 
     public NightNeo(IEventBus modBus) {
         instance = this;

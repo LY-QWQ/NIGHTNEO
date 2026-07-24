@@ -90,7 +90,7 @@ public class AntiWeb extends Module {
     private BlockPos findNearestWaterSource(BlockPos origin) {
         if (mc.level == null) return null;
         if (mc.level.getBlockState(origin).is(Blocks.WATER)
-                && mc.level.getFluidState(origin).getAmount() == 8) {
+                && mc.level.getFluidState(origin).amount() == 8) {
             return origin;
         }
         for (int dx = -1; dx <= 1; ++dx) {
@@ -98,7 +98,7 @@ public class AntiWeb extends Module {
                 for (int dz = -1; dz <= 1; ++dz) {
                     BlockPos pos = origin.offset(dx, dy, dz);
                     if (mc.level.getBlockState(pos).is(Blocks.WATER)
-                            && mc.level.getFluidState(pos).getAmount() == 8) {
+                            && mc.level.getFluidState(pos).amount() == 8) {
                         return pos;
                     }
                 }

@@ -60,8 +60,8 @@ extends ClientBase {
 
     public static double getBaseSpeed() {
         double baseSpeed = 0.2875;
-        if (mc.player.hasEffect(MobEffects.MOVEMENT_SPEED)) {
-            int amplifier = mc.player.getEffect(MobEffects.MOVEMENT_SPEED).getAmplifier();
+        if (mc.player.hasEffect(MobEffects.MOVEMENT_SPEED.value())) {
+            int amplifier = mc.player.getEffect(MobEffects.MOVEMENT_SPEED.value()).getAmplifier();
             baseSpeed *= 1.0 + 0.2 * (double)(amplifier + 1);
         }
         return baseSpeed;

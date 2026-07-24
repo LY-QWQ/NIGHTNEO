@@ -256,7 +256,7 @@ implements Closeable {
                 RenderSystem.setShaderTexture(0, textureLocation);
                 List<GlyphEntry> entries = this.glyphPageMap.get(textureLocation);
                 Tesselator tesselator = Tesselator.getInstance();
-                BufferBuilder bufferBuilder = tesselator.getBuilder();
+                BufferBuilder bufferBuilder = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
                 bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
 
                 for (GlyphEntry entry : entries) {
@@ -326,7 +326,7 @@ implements Closeable {
             }
             for (ResourceLocation textureLocation : this.glyphPageMap.keySet()) {
                 RenderSystem.setShaderTexture(0, textureLocation);
-                BufferBuilder bufferBuilder = Tesselator.getInstance().getBuilder();
+                BufferBuilder bufferBuilder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
                 bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
                 for (GlyphEntry entry : this.glyphPageMap.get(textureLocation)) {
                     Glyph glyph = entry.toDraw;

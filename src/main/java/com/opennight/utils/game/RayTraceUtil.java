@@ -44,7 +44,7 @@ extends ClientBase {
         HitResult hitResult = null;
         Entity entity = mc.getCameraEntity();
         if (entity != null && mc.level != null) {
-            double pickRange = mc.gameMode.getBlockReachDistance();
+            double pickRange = 4.5;
             hitResult = RayTraceUtil.rayTrace(pickRange, partialTicks, true, rotation.getYaw(), rotation.getPitch());
         }
         return hitResult;
@@ -92,7 +92,7 @@ extends ClientBase {
         if (entity == null || mc.level == null) {
             return null;
         }
-        float partialTicks = mc.getTimer().getGameTimeDeltaTicks();
+        float partialTicks = mc.timer.getGameTimeDeltaTicks();
         Vec3 eyePos = entity.getEyePosition(partialTicks);
         Vec3 lookDir = RotationUtil.directionFromRotation(rotation);
         Vec3 endPos = eyePos.add(lookDir.x * range, lookDir.y * range, lookDir.z * range);
