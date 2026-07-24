@@ -375,7 +375,7 @@ extends ClientBase {
         Vec3 eyePos = mc.player.getEyePosition(1.0f);
         boolean checkClampedRange = false;
         double maxRangeSqr = pickRange;
-        if (mc.gameMode.false) {
+        if (mc.gameMode.getBlockReachDistance() > 5.0) {
             pickRange = maxRangeSqr = 6.0;
         } else if (pickRange > 3.0) {
             checkClampedRange = true;
